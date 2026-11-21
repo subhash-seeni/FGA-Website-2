@@ -79,27 +79,37 @@ export default function FinancialEquationSection() {
     <section
       ref={sectionRef}
       id="financial-equation"
-      className="bg-blueprint-grid ambient-wash-copper"
+      className="section-band-parchment bg-blueprint-grid ambient-wash-copper"
       style={{
-        padding: "clamp(72px, 8vw, 120px) 0",
-        backgroundColor: "var(--surface-stone)",
-        borderTop: "1px solid var(--surface-hairline)",
-        borderBottom: "1px solid var(--surface-hairline)",
+        padding: "clamp(88px, 9vw, 140px) 0",
         position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div className="editorial-container">
+      {/* Ghost Numeral 02 */}
+      <div
+        className="ghost-numeral"
+        style={{
+          top: "30px",
+          right: "clamp(20px, 5vw, 80px)",
+        }}
+      >
+        02
+      </div>
+
+      <div className="editorial-container" style={{ position: "relative", zIndex: 1 }}>
         {/* Section Header */}
-        <div style={{ maxWidth: "800px", marginBottom: "clamp(36px, 5vw, 56px)" }}>
+        <div style={{ maxWidth: "800px", marginBottom: "clamp(40px, 5vw, 64px)" }}>
           <div className="mono-tag" style={{ marginBottom: "12px" }}>
             {businessValueData.sectionNum}
           </div>
           <h2
             className="font-display"
             style={{
-              fontSize: "clamp(2.4rem, 4.5vw, 4rem)",
+              fontSize: "clamp(2.8rem, 5.8vw, 4.8rem)",
               color: "var(--ink-primary)",
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.035em",
+              lineHeight: 1.05,
               marginBottom: "12px",
             }}
           >
@@ -109,11 +119,11 @@ export default function FinancialEquationSection() {
             style={{
               fontSize: "1.05rem",
               color: "var(--ink-secondary)",
-              lineHeight: 1.5,
+              lineHeight: 1.55,
               fontWeight: 500,
             }}
           >
-            Convert heavy capital expenditures into fixed, tax-deductible operational liquidity.
+            Convert heavy capital expenditures into predictable, tax-deductible operational liquidity.
           </p>
         </div>
 
@@ -131,8 +141,8 @@ export default function FinancialEquationSection() {
           <div
             className="card-tactile"
             style={{
-              borderRadius: "18px",
-              padding: "clamp(24px, 4vw, 36px)",
+              borderRadius: "22px",
+              padding: "clamp(26px, 4vw, 40px)",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
@@ -293,8 +303,8 @@ export default function FinancialEquationSection() {
           <div
             className="founder-card-anim card-tactile"
             style={{
-              borderRadius: "18px",
-              padding: "clamp(28px, 4vw, 40px)",
+              borderRadius: "22px",
+              padding: "clamp(28px, 4vw, 42px)",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",

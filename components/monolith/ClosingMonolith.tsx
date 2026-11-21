@@ -14,26 +14,37 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
       {/* 1. Institutional Trust & Banking Ecosystem Stage */}
       <section
         id="institutional-trust"
+        className="section-band-stone"
         style={{
-          padding: "clamp(72px, 8vw, 110px) 0",
-          backgroundColor: "var(--surface-stone)",
-          borderTop: "1px solid var(--surface-hairline)",
-          borderBottom: "1px solid var(--surface-hairline)",
+          padding: "clamp(88px, 9vw, 140px) 0",
           position: "relative",
+          overflow: "hidden",
         }}
       >
-        <div className="editorial-container">
+        {/* Ghost Numeral 04 */}
+        <div
+          className="ghost-numeral"
+          style={{
+            top: "30px",
+            right: "clamp(20px, 5vw, 80px)",
+          }}
+        >
+          04
+        </div>
+
+        <div className="editorial-container" style={{ position: "relative", zIndex: 1 }}>
           {/* Header */}
-          <div style={{ maxWidth: "780px", marginBottom: "clamp(36px, 5vw, 56px)" }}>
+          <div style={{ maxWidth: "800px", marginBottom: "clamp(40px, 5vw, 64px)" }}>
             <div className="mono-tag" style={{ marginBottom: "12px" }}>
               04 / INSTITUTIONAL TRUST & GOVERNANCE
             </div>
             <h2
               className="font-display"
               style={{
-                fontSize: "clamp(2.4rem, 4.5vw, 4rem)",
+                fontSize: "clamp(2.8rem, 5.8vw, 4.8rem)",
                 color: "var(--ink-primary)",
-                letterSpacing: "-0.03em",
+                letterSpacing: "-0.035em",
+                lineHeight: 1.05,
                 marginBottom: "12px",
               }}
             >
@@ -43,7 +54,7 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
               style={{
                 fontSize: "1.05rem",
                 color: "var(--ink-secondary)",
-                lineHeight: 1.5,
+                lineHeight: 1.55,
                 fontWeight: 500,
               }}
             >
@@ -57,7 +68,7 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
               display: "grid",
               gridTemplateColumns: "repeat(4, 1fr)",
               gap: "14px",
-              marginBottom: "40px",
+              marginBottom: "44px",
             }}
             className="trust-badges-grid"
           >
@@ -66,8 +77,8 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                 key={idx}
                 className="card-tactile card-tactile-hover"
                 style={{
-                  borderRadius: "12px",
-                  padding: "16px 18px",
+                  borderRadius: "14px",
+                  padding: "18px 20px",
                   display: "flex",
                   alignItems: "center",
                   gap: "12px",
@@ -75,8 +86,8 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
               >
                 <div
                   style={{
-                    width: "34px",
-                    height: "34px",
+                    width: "36px",
+                    height: "36px",
                     borderRadius: "8px",
                     backgroundColor: "var(--color-copper-light)",
                     display: "flex",
@@ -107,8 +118,8 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "24px",
-              paddingTop: "28px",
+              gap: "28px",
+              paddingTop: "32px",
               borderTop: "1px solid var(--surface-hairline)",
             }}
             className="governance-pillars-grid"
@@ -125,13 +136,13 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                   color: "var(--color-copper)",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
-                  marginBottom: "6px",
+                  marginBottom: "8px",
                 }}
               >
                 <Landmark size={15} />
                 <span>BANKING SYNDICATE</span>
               </div>
-              <p style={{ fontSize: "0.86rem", color: "var(--ink-secondary)", lineHeight: 1.5 }}>
+              <p style={{ fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: 1.55 }}>
                 Direct integration with top Indian private banking lenders ensures competitive leasing rates and swift underwriting.
               </p>
             </div>
@@ -148,13 +159,13 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                   color: "var(--color-copper)",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
-                  marginBottom: "6px",
+                  marginBottom: "8px",
                 }}
               >
                 <CheckCircle size={15} />
                 <span>NPCI & DIGILOCKER</span>
               </div>
-              <p style={{ fontSize: "0.86rem", color: "var(--ink-secondary)", lineHeight: 1.5 }}>
+              <p style={{ fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: 1.55 }}>
                 Legally binding Aadhaar eSign execution and automated eNACH mandate processing compliant with RBI standards.
               </p>
             </div>
@@ -171,13 +182,13 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                   color: "var(--color-copper)",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
-                  marginBottom: "6px",
+                  marginBottom: "8px",
                 }}
               >
                 <Scale size={15} />
                 <span>SARFAESI COMPLIANT</span>
               </div>
-              <p style={{ fontSize: "0.86rem", color: "var(--ink-secondary)", lineHeight: 1.5 }}>
+              <p style={{ fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: 1.55 }}>
                 Structured under Indian commercial law and IND AS standards for 100% compliant off-balance-sheet OpEx treatment.
               </p>
             </div>
@@ -185,11 +196,14 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
         </div>
       </section>
 
+      {/* Kinetic Datum Line */}
+      <div className="kinetic-datum-line" />
+
       {/* 2. Closing Conversion Stage */}
       <section
         className="ambient-wash-champagne"
         style={{
-          padding: "clamp(72px, 8vw, 120px) 0",
+          padding: "clamp(88px, 9vw, 140px) 0",
           backgroundColor: "var(--surface-ground)",
           position: "relative",
         }}
@@ -198,12 +212,13 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
           <div
             className="card-tactile"
             style={{
-              borderRadius: "24px",
-              padding: "clamp(48px, 6vw, 76px) clamp(24px, 5vw, 64px)",
+              borderRadius: "28px",
+              padding: "clamp(52px, 7vw, 84px) clamp(24px, 5vw, 68px)",
               textAlign: "center",
               position: "relative",
-              maxWidth: "1040px",
+              maxWidth: "1060px",
               margin: "0 auto",
+              boxShadow: "0 28px 60px -15px rgba(18, 19, 22, 0.08), inset 0 1px 0 #ffffff",
             }}
           >
             {/* Top Coordinate Pill */}
@@ -212,7 +227,7 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
-                padding: "6px 14px",
+                padding: "6px 16px",
                 borderRadius: "9999px",
                 backgroundColor: "var(--surface-stone)",
                 border: "1px solid var(--surface-hairline)",
@@ -222,7 +237,7 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                 fontWeight: 700,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                marginBottom: "20px",
+                marginBottom: "24px",
               }}
             >
               <span
@@ -240,11 +255,11 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
             <h2
               className="font-display"
               style={{
-                fontSize: "clamp(2.6rem, 5.2vw, 4.2rem)",
+                fontSize: "clamp(2.8rem, 5.5vw, 4.6rem)",
                 color: "var(--ink-primary)",
-                lineHeight: 1.05,
+                lineHeight: 1.04,
                 letterSpacing: "-0.035em",
-                marginBottom: "16px",
+                marginBottom: "18px",
               }}
             >
               {conversionData.headline}
@@ -253,11 +268,11 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
             {/* Subtext: 1 Punchy Line */}
             <p
               style={{
-                fontSize: "clamp(1.05rem, 1.3vw, 1.2rem)",
+                fontSize: "clamp(1.05rem, 1.35vw, 1.25rem)",
                 color: "var(--ink-secondary)",
                 lineHeight: 1.55,
-                maxWidth: "640px",
-                margin: "0 auto 32px auto",
+                maxWidth: "660px",
+                margin: "0 auto 36px auto",
                 fontWeight: 500,
               }}
             >
@@ -270,7 +285,7 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: "14px",
+                gap: "16px",
                 flexWrap: "wrap",
               }}
             >
@@ -278,7 +293,7 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                 onClick={() => onOpenEnquiry("luxury-fleet")}
                 className="btn-copper"
                 style={{
-                  padding: "16px 36px",
+                  padding: "16px 38px",
                   fontSize: "0.95rem",
                   borderRadius: "9999px",
                 }}
@@ -292,7 +307,7 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                 href={`mailto:${footerData.email}`}
                 className="btn-pill-secondary"
                 style={{
-                  padding: "16px 30px",
+                  padding: "16px 32px",
                   fontSize: "0.95rem",
                   borderRadius: "9999px",
                 }}

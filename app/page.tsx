@@ -39,11 +39,20 @@ export default function Home() {
         {/* 4. The Asset Vault: Museum-Grade Specification Cards & Financial Terms */}
         <AssetVaultSection onOpenEnquiry={handleOpenEnquiry} />
 
+        {/* Precision Kinetic Transition */}
+        <div className="kinetic-datum-line" />
+
         {/* 5. The Financial Equation: CapEx vs OpEx Comparison Ledger & Founder's Statement */}
         <FinancialEquationSection />
 
+        {/* Precision Kinetic Transition */}
+        <div className="kinetic-datum-line" />
+
         {/* 6. The Velocity Line: Interactive 5-Step Digital Pipeline */}
         <VelocityLineSection onOpenEnquiry={() => handleOpenEnquiry("luxury-fleet")} />
+
+        {/* Precision Kinetic Transition */}
+        <div className="kinetic-datum-line" />
 
         {/* 7. Institutional Governance & Closing Conversion Stage */}
         <ClosingMonolith onOpenEnquiry={handleOpenEnquiry} />
