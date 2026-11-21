@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight, Check, Sparkles } from "lucide-react";
 import { categoryCardsData } from "@/lib/data/homepageContent";
 import { assetPath } from "@/lib/utils/basePath";
 import { gsap } from "@/lib/animations/gsap";
@@ -13,16 +13,21 @@ interface AssetVaultSectionProps {
 
 // Condensed 1-line high-impact descriptions (User Request: scale down text)
 const condensedDescriptions: Record<string, string> = {
-  "luxury-fleet": "Premier corporate & executive mobility with comprehensive insurance and dedicated concierge.",
-  "construction-warehouse": "Heavy earthmoving, lifting & warehouse machinery for major industrial corridors across India.",
-  "it-hardware": "Enterprise servers, workstations & network infrastructure with 3-year OEM ProSupport included.",
+  "luxury-fleet": "Premier corporate mobility with full insurance coverage & white-glove concierge.",
+  "construction-warehouse": "Heavy earthmoving & warehouse equipment across India's key industrial corridors.",
+  "it-hardware": "Enterprise servers, workstations & compute infrastructure with 3-year OEM ProSupport.",
 };
 
 export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionProps) {
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState("luxury-fleet");
   const sectionRef = useRef<HTMLElement>(null);
+  const featuredCardRef = useRef<HTMLDivElement>(null);
 
-  // GSAP Staggered Entrance on Scroll
+  const activeCategory =
+    categoryCardsData.find((cat) => cat.id === activeId) || categoryCardsData[0];
+  const otherCategories = categoryCardsData.filter((cat) => cat.id !== activeId);
+
+  // GSAP Entrance
   useEffect(() => {
     if (typeof window === "undefined" || !sectionRef.current) return;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -30,12 +35,12 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".vault-card-anim",
+        ".vault-spread-anim",
         { opacity: 0, y: 35 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 0.85,
           stagger: 0.15,
           ease: "power3.out",
           clearProps: "transform,opacity",
@@ -50,17 +55,48 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
     return () => ctx.revert();
   }, []);
 
+  // GSAP crossfade on active division switch
+  const handleSelectDivision = (id: string) => {
+    if (id === activeId) return;
+    if (featuredCardRef.current) {
+      gsap.fromTo(
+        featuredCardRef.current,
+        { opacity: 0.7, scale: 0.98 },
+        { opacity: 1, scale: 1, duration: 0.45, ease: "power2.out" }
+      );
+    }
+    setActiveId(id);
+  };
+
+  const getDivisionAccent = (id: string) => {
+    if (id === "luxury-fleet") return "var(--accent-fleet)";
+    if (id === "construction-warehouse") return "var(--accent-construction)";
+    return "var(--accent-compute)";
+  };
+
   return (
     <section
       ref={sectionRef}
       id="asset-vault"
       style={{
-        padding: "clamp(72px, 8vw, 120px) 0",
+        padding: "clamp(88px, 9vw, 140px) 0",
         backgroundColor: "var(--surface-ground)",
         position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div className="editorial-container">
+      {/* Ghost Numeral Background Watermark */}
+      <div
+        className="ghost-numeral"
+        style={{
+          top: "30px",
+          right: "clamp(20px, 5vw, 80px)",
+        }}
+      >
+        01
+      </div>
+
+      <div className="editorial-container" style={{ position: "relative", zIndex: 1 }}>
         {/* Section Header */}
         <div
           style={{
@@ -69,7 +105,7 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
             justifyContent: "space-between",
             flexWrap: "wrap",
             gap: "24px",
-            marginBottom: "clamp(36px, 5vw, 56px)",
+            marginBottom: "clamp(40px, 5vw, 64px)",
             paddingBottom: "24px",
             borderBottom: "1px solid var(--surface-hairline)",
           }}
@@ -81,299 +117,497 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
             <h2
               className="font-display"
               style={{
-                fontSize: "clamp(2.4rem, 4.5vw, 4rem)",
+                fontSize: "clamp(2.8rem, 5.8vw, 4.8rem)",
                 color: "var(--ink-primary)",
-                letterSpacing: "-0.03em",
+                letterSpacing: "-0.035em",
+                lineHeight: 1.05,
               }}
             >
               The Asset Vault
             </h2>
           </div>
 
-          <p
-            style={{
-              fontSize: "1.05rem",
-              color: "var(--ink-secondary)",
-              maxWidth: "460px",
-              lineHeight: 1.5,
-              fontWeight: 500,
-            }}
-          >
-            Commercial operating leases across three core verticals with zero capital lock-in.
-          </p>
+          <div style={{ maxWidth: "480px" }}>
+            <p
+              style={{
+                fontSize: "1.05rem",
+                color: "var(--ink-secondary)",
+                lineHeight: 1.5,
+                fontWeight: 500,
+                marginBottom: "14px",
+              }}
+            >
+              Operating leases across three capital verticals with zero capital lock-in and guaranteed rapid delivery.
+            </p>
+            {/* Division Switcher Buttons */}
+            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+              {categoryCardsData.map((cat) => {
+                const isSelected = cat.id === activeId;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => handleSelectDivision(cat.id)}
+                    style={{
+                      padding: "6px 14px",
+                      borderRadius: "9999px",
+                      border: isSelected ? "1px solid var(--ink-primary)" : "1px solid var(--surface-hairline)",
+                      backgroundColor: isSelected ? "var(--ink-primary)" : "var(--surface-card)",
+                      color: isSelected ? "#ffffff" : "var(--ink-secondary)",
+                      fontFamily: "var(--font-technical)",
+                      fontSize: "0.74rem",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      transition: "all 0.2s ease",
+                    }}
+                  >
+                    {cat.title}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
-        {/* 3 Architectural Asset Specification Cards Grid */}
+        {/* Magazine Editorial Spread Layout */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "28px",
+            gridTemplateColumns: "1.25fr 0.9fr",
+            gap: "clamp(24px, 3.5vw, 40px)",
+            alignItems: "stretch",
           }}
-          className="vault-cards-grid"
+          className="vault-editorial-spread"
         >
-          {categoryCardsData.map((cat) => {
-            const isHovered = hoveredCard === cat.id;
-
-            // Division-specific signature colors
-            const divisionAccent =
-              cat.id === "luxury-fleet"
-                ? "var(--accent-fleet)"
-                : cat.id === "construction-warehouse"
-                ? "var(--accent-construction)"
-                : "var(--accent-compute)";
-
-            return (
+          {/* Main Featured Editorial Card (Left Column) */}
+          <div
+            ref={featuredCardRef}
+            className="vault-spread-anim card-tactile"
+            style={{
+              borderRadius: "24px",
+              overflow: "hidden",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              border: "1px solid var(--surface-hairline)",
+            }}
+          >
+            <div>
+              {/* Division Accent Top Line */}
               <div
-                key={cat.id}
-                className="vault-card-anim card-tactile card-tactile-hover"
-                onMouseEnter={() => setHoveredCard(cat.id)}
-                onMouseLeave={() => setHoveredCard(null)}
+                style={{
+                  height: "5px",
+                  width: "100%",
+                  backgroundColor: getDivisionAccent(activeCategory.id),
+                }}
+              />
+
+              {/* Cinematic Featured Image */}
+              <div
                 style={{
                   position: "relative",
-                  borderRadius: "18px",
+                  width: "100%",
+                  height: "clamp(280px, 32vw, 380px)",
+                  overflow: "hidden",
+                  borderBottom: "1px solid var(--surface-hairline)",
+                }}
+              >
+                <Image
+                  src={assetPath(activeCategory.image)}
+                  alt={activeCategory.title}
+                  fill
+                  priority
+                  sizes="(max-width: 900px) 100vw, 60vw"
+                  style={{
+                    objectFit: "cover",
+                    transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+                  }}
+                />
+
+                {/* Floating Meta Pills */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "16px",
+                    left: "16px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
+                >
+                  <span
+                    style={{
+                      padding: "6px 14px",
+                      borderRadius: "9999px",
+                      backgroundColor: "rgba(255, 255, 255, 0.94)",
+                      backdropFilter: "blur(10px)",
+                      border: "1px solid rgba(0, 0, 0, 0.08)",
+                      fontFamily: "var(--font-technical)",
+                      fontSize: "0.72rem",
+                      color: "var(--ink-primary)",
+                      fontWeight: 800,
+                      letterSpacing: "0.08em",
+                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
+                    }}
+                  >
+                    FEATURED DIVISION · {activeCategory.num}
+                  </span>
+                </div>
+
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: "16px",
+                    right: "16px",
+                    backgroundColor: "rgba(18, 19, 22, 0.85)",
+                    color: "#ffffff",
+                    padding: "6px 14px",
+                    borderRadius: "9999px",
+                    fontFamily: "var(--font-technical)",
+                    fontSize: "0.74rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  {activeCategory.startingRate}
+                </div>
+              </div>
+
+              {/* Card Body */}
+              <div style={{ padding: "clamp(24px, 3.5vw, 36px)" }}>
+                <div
+                  style={{
+                    fontFamily: "var(--font-technical)",
+                    fontSize: "0.72rem",
+                    color: getDivisionAccent(activeCategory.id),
+                    letterSpacing: "0.12em",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    marginBottom: "6px",
+                  }}
+                >
+                  {activeCategory.badge}
+                </div>
+
+                <h3
+                  className="font-display"
+                  style={{
+                    fontSize: "clamp(1.9rem, 2.6vw, 2.5rem)",
+                    color: "var(--ink-primary)",
+                    marginBottom: "8px",
+                    letterSpacing: "-0.03em",
+                  }}
+                >
+                  {activeCategory.title}
+                </h3>
+
+                <p
+                  style={{
+                    fontSize: "0.98rem",
+                    color: "var(--ink-secondary)",
+                    lineHeight: 1.55,
+                    marginBottom: "24px",
+                    fontWeight: 500,
+                    maxWidth: "600px",
+                  }}
+                >
+                  {condensedDescriptions[activeCategory.id] || activeCategory.description}
+                </p>
+
+                {/* Representative Fleet Chips */}
+                <div style={{ marginBottom: "24px" }}>
+                  <div
+                    style={{
+                      fontSize: "0.7rem",
+                      fontFamily: "var(--font-technical)",
+                      color: "var(--ink-muted)",
+                      letterSpacing: "0.1em",
+                      fontWeight: 700,
+                      marginBottom: "8px",
+                    }}
+                  >
+                    DEPLOYED ASSETS:
+                  </div>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                    {activeCategory.assets.map((asset) => (
+                      <span
+                        key={asset}
+                        style={{
+                          padding: "6px 12px",
+                          backgroundColor: "var(--surface-stone)",
+                          border: "1px solid var(--surface-hairline)",
+                          borderRadius: "8px",
+                          fontSize: "0.78rem",
+                          color: "var(--ink-primary)",
+                          fontFamily: "var(--font-technical)",
+                          fontWeight: 600,
+                        }}
+                      >
+                        {asset}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Inclusions Checklist */}
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(2, 1fr)",
+                    gap: "10px",
+                    paddingTop: "16px",
+                    borderTop: "1px solid var(--surface-hairline)",
+                  }}
+                  className="inclusions-grid"
+                >
+                  {activeCategory.inclusions.map((inc, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                        fontSize: "0.84rem",
+                        color: "var(--ink-secondary)",
+                      }}
+                    >
+                      <Check size={14} color="var(--color-copper)" style={{ flexShrink: 0 }} />
+                      <span>{inc}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Action Footer */}
+            <div
+              style={{
+                padding: "20px clamp(24px, 3.5vw, 36px)",
+                borderTop: "1px solid var(--surface-hairline)",
+                backgroundColor: "var(--surface-stone)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                flexWrap: "wrap",
+                gap: "14px",
+              }}
+            >
+              <div>
+                <span
+                  style={{
+                    fontFamily: "var(--font-technical)",
+                    fontSize: "0.72rem",
+                    color: "var(--ink-muted)",
+                    display: "block",
+                  }}
+                >
+                  TYPICAL TENURE
+                </span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "1.2rem",
+                    fontWeight: 700,
+                    color: "var(--ink-primary)",
+                  }}
+                >
+                  {activeCategory.typicalTenure}
+                </span>
+              </div>
+
+              <button
+                onClick={() => onOpenEnquiry(activeCategory.id)}
+                className="btn-pill-primary"
+                style={{
+                  padding: "12px 24px",
+                }}
+              >
+                <span>Structure {activeCategory.title} Lease</span>
+                <ArrowUpRight size={15} />
+              </button>
+            </div>
+          </div>
+
+          {/* Right Column: Stacked Secondary Division Cards */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "24px",
+            }}
+          >
+            {otherCategories.map((cat) => (
+              <div
+                key={cat.id}
+                className="vault-spread-anim card-tactile card-tactile-hover"
+                style={{
+                  borderRadius: "20px",
                   overflow: "hidden",
                   display: "flex",
                   flexDirection: "column",
+                  flex: 1,
+                  border: "1px solid var(--surface-hairline)",
+                  cursor: "pointer",
                 }}
+                onClick={() => handleSelectDivision(cat.id)}
               >
-                {/* Division Accent Top Hairline */}
+                {/* Division Accent Line */}
                 <div
                   style={{
                     height: "4px",
                     width: "100%",
-                    backgroundColor: divisionAccent,
+                    backgroundColor: getDivisionAccent(cat.id),
                   }}
                 />
 
-                {/* Photographic Window */}
                 <div
                   style={{
                     position: "relative",
                     width: "100%",
-                    height: "230px",
+                    height: "170px",
                     overflow: "hidden",
-                    borderBottom: "1px solid var(--surface-hairline)",
                   }}
                 >
                   <Image
                     src={assetPath(cat.image)}
                     alt={cat.title}
                     fill
-                    sizes="(max-width: 900px) 100vw, 33vw"
-                    style={{
-                      objectFit: "cover",
-                      transform: isHovered ? "scale(1.05)" : "scale(1)",
-                      transition: "transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)",
-                    }}
+                    sizes="(max-width: 900px) 100vw, 40vw"
+                    style={{ objectFit: "cover" }}
                   />
-
-                  {/* Top Floating Badge */}
                   <div
                     style={{
                       position: "absolute",
-                      top: "14px",
-                      left: "14px",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
+                      top: "12px",
+                      left: "12px",
+                      padding: "4px 10px",
+                      borderRadius: "9999px",
+                      backgroundColor: "rgba(255, 255, 255, 0.92)",
+                      fontFamily: "var(--font-technical)",
+                      fontSize: "0.68rem",
+                      fontWeight: 700,
+                      color: "var(--ink-primary)",
                     }}
                   >
-                    <span
-                      style={{
-                        padding: "4px 10px",
-                        borderRadius: "9999px",
-                        backgroundColor: "rgba(255, 255, 255, 0.95)",
-                        backdropFilter: "blur(8px)",
-                        border: "1px solid rgba(0, 0, 0, 0.08)",
-                        fontFamily: "var(--font-technical)",
-                        fontSize: "0.68rem",
-                        color: "var(--ink-primary)",
-                        fontWeight: 700,
-                        letterSpacing: "0.06em",
-                        boxShadow: "0 2px 6px rgba(0, 0, 0, 0.08)",
-                      }}
-                    >
-                      {cat.num}
-                    </span>
+                    {cat.num}
+                  </div>
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "12px",
+                      right: "12px",
+                      padding: "4px 10px",
+                      borderRadius: "9999px",
+                      backgroundColor: "rgba(18, 19, 22, 0.8)",
+                      fontFamily: "var(--font-technical)",
+                      fontSize: "0.7rem",
+                      fontWeight: 600,
+                      color: "#ffffff",
+                    }}
+                  >
+                    {cat.startingRate}
                   </div>
                 </div>
 
-                {/* Card Content Body */}
                 <div
                   style={{
-                    padding: "24px",
+                    padding: "20px",
                     display: "flex",
                     flexDirection: "column",
-                    flex: 1,
                     justifyContent: "space-between",
+                    flex: 1,
                   }}
                 >
                   <div>
-                    {/* Badge & Subtitle */}
                     <div
                       style={{
                         fontFamily: "var(--font-technical)",
                         fontSize: "0.68rem",
-                        color: divisionAccent,
-                        letterSpacing: "0.12em",
+                        color: getDivisionAccent(cat.id),
                         fontWeight: 700,
+                        letterSpacing: "0.1em",
                         marginBottom: "4px",
                       }}
                     >
                       {cat.badge}
                     </div>
 
-                    <h3
+                    <h4
                       className="font-display"
                       style={{
-                        fontSize: "1.7rem",
+                        fontSize: "1.45rem",
                         color: "var(--ink-primary)",
-                        marginBottom: "10px",
                         letterSpacing: "-0.02em",
+                        marginBottom: "6px",
                       }}
                     >
                       {cat.title}
-                    </h3>
+                    </h4>
 
-                    {/* Scaled-Down 1-Line Description */}
                     <p
                       style={{
-                        fontSize: "0.9rem",
+                        fontSize: "0.86rem",
                         color: "var(--ink-secondary)",
-                        lineHeight: 1.5,
-                        marginBottom: "18px",
-                        fontWeight: 500,
+                        lineHeight: 1.45,
+                        marginBottom: "12px",
                       }}
                     >
-                      {condensedDescriptions[cat.id] || cat.description}
+                      {condensedDescriptions[cat.id]}
                     </p>
-
-                    {/* Curated Asset Pill List */}
-                    <div style={{ marginBottom: "18px" }}>
-                      <div
-                        style={{
-                          fontSize: "0.7rem",
-                          fontFamily: "var(--font-technical)",
-                          color: "var(--ink-muted)",
-                          letterSpacing: "0.08em",
-                          fontWeight: 700,
-                          marginBottom: "6px",
-                        }}
-                      >
-                        REPRESENTATIVE FLEET:
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          flexWrap: "wrap",
-                          gap: "6px",
-                        }}
-                      >
-                        {cat.assets.map((asset) => (
-                          <span
-                            key={asset}
-                            style={{
-                              padding: "4px 9px",
-                              backgroundColor: "var(--surface-stone)",
-                              border: "1px solid var(--surface-hairline)",
-                              borderRadius: "6px",
-                              fontSize: "0.74rem",
-                              color: "var(--ink-primary)",
-                              fontFamily: "var(--font-technical)",
-                              fontWeight: 600,
-                            }}
-                          >
-                            {asset}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Inclusions Checklist */}
-                    <div style={{ marginBottom: "20px" }}>
-                      <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "6px" }}>
-                        {cat.inclusions.map((inc, i) => (
-                          <li
-                            key={i}
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              gap: "8px",
-                              fontSize: "0.82rem",
-                              color: "var(--ink-secondary)",
-                            }}
-                          >
-                            <Check size={14} color="var(--color-copper)" style={{ flexShrink: 0 }} />
-                            <span>{inc}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
                   </div>
 
-                  {/* Financial Terms Bar & Direct Action */}
                   <div
                     style={{
-                      borderTop: "1px solid var(--surface-hairline)",
-                      paddingTop: "16px",
-                      marginTop: "8px",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      flexWrap: "wrap",
-                      gap: "12px",
+                      paddingTop: "12px",
+                      borderTop: "1px solid var(--surface-hairline)",
                     }}
                   >
-                    <div>
-                      <div
-                        style={{
-                          fontFamily: "var(--font-display)",
-                          fontSize: "1.25rem",
-                          fontWeight: 800,
-                          color: "var(--ink-primary)",
-                          letterSpacing: "-0.01em",
-                        }}
-                      >
-                        {cat.startingRate}
-                      </div>
-                      <div
-                        style={{
-                          fontFamily: "var(--font-technical)",
-                          fontSize: "0.7rem",
-                          color: "var(--ink-muted)",
-                          letterSpacing: "0.04em",
-                        }}
-                      >
-                        Tenure: {cat.typicalTenure}
-                      </div>
-                    </div>
-
-                    <button
-                      onClick={() => onOpenEnquiry(cat.id)}
-                      className="btn-pill-primary"
+                    <span
                       style={{
-                        padding: "10px 18px",
-                        fontSize: "0.82rem",
-                        borderRadius: "9999px",
+                        fontSize: "0.78rem",
+                        color: "var(--color-copper)",
+                        fontWeight: 700,
+                        fontFamily: "var(--font-technical)",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "4px",
                       }}
                     >
-                      <span>Lease {cat.title}</span>
-                      <ArrowUpRight size={14} />
+                      <Sparkles size={13} />
+                      Click to Feature
+                    </span>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onOpenEnquiry(cat.id);
+                      }}
+                      className="btn-pill-secondary"
+                      style={{
+                        padding: "8px 14px",
+                        fontSize: "0.78rem",
+                      }}
+                    >
+                      <span>Lease Options</span>
+                      <ArrowUpRight size={13} />
                     </button>
                   </div>
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
 
       <style jsx>{`
-        @media (max-width: 1024px) {
-          .vault-cards-grid {
+        @media (max-width: 960px) {
+          .vault-editorial-spread {
             grid-template-columns: 1fr !important;
-            gap: 32px !important;
+          }
+          .inclusions-grid {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>
