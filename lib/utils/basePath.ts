@@ -8,7 +8,7 @@ export const basePath =
   process.env.NEXT_PUBLIC_BASE_PATH !== undefined
     ? process.env.NEXT_PUBLIC_BASE_PATH
     : isGithubActions
-    ? "/FGA-Website"
+    ? "/FGA-Website-2"
     : "";
 
 export function assetPath(path: string): string {
