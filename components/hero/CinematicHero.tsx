@@ -159,8 +159,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
           top: 0,
           left: 0,
           right: 0,
-          height: "100%",
-          minHeight: "750px",
+          bottom: 0,
           zIndex: 0,
           pointerEvents: "none",
         }}
@@ -174,9 +173,9 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
               style={{
                 position: "absolute",
                 inset: 0,
-                opacity: isActive ? 0.38 : 0,
+                opacity: isActive ? 0.75 : 0,
                 transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
-                filter: "saturate(1.08) contrast(1.04)",
+                filter: "contrast(1.05) saturate(1.1)",
               }}
             >
               <Image
@@ -185,20 +184,20 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
                 fill
                 priority={idx === 0}
                 sizes="100vw"
-                style={{ objectFit: "cover", objectPosition: "center 30%" }}
+                style={{ objectFit: "cover", objectPosition: "75% center" }}
               />
             </div>
           );
         })}
 
-        {/* Master Light Architectural Scrim (Preserves 100% Light Luxury Identity) */}
+        {/* Master Light Architectural Scrim (Crisp Typography Left, Vivid Showcase Right) */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             background: `
-              radial-gradient(ellipse at 75% 25%, rgba(251, 251, 249, 0.45) 0%, rgba(251, 251, 249, 0.82) 65%),
-              linear-gradient(180deg, rgba(251, 251, 249, 0.94) 0%, rgba(251, 251, 249, 0.55) 25%, rgba(251, 251, 249, 0.70) 65%, #fbfbf9 100%)
+              linear-gradient(90deg, #fbfbf9 0%, rgba(251, 251, 249, 0.97) 38%, rgba(251, 251, 249, 0.70) 58%, rgba(251, 251, 249, 0.18) 100%),
+              linear-gradient(180deg, #fbfbf9 0%, rgba(251, 251, 249, 0.4) 15%, transparent 35%, rgba(251, 251, 249, 0.6) 75%, #fbfbf9 100%)
             `,
           }}
         />
@@ -209,7 +208,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
           style={{
             position: "absolute",
             inset: 0,
-            opacity: 0.65,
+            opacity: 0.5,
           }}
         />
       </div>
