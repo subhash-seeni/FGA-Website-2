@@ -246,7 +246,7 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
           <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: 0 }}>
             {/* Direct Contact Hotline Info for C-suite */}
             <div
-              className="desktop-only"
+              className="desktop-only nav-hotline"
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -321,20 +321,22 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-            padding: "24px",
+            padding: "clamp(16px, 4vw, 24px)",
+            overflowY: "auto",
+            maxHeight: "100vh",
           }}
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation Drawer"
         >
           {/* Top Bar with Cropped Logo & Close */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <div style={{ position: "relative", width: "160px", height: "45px" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexShrink: 0 }}>
+            <div style={{ position: "relative", width: "150px", height: "42px" }}>
               <Image
                 src={assetPath("/firstgen-logo-cropped.png")}
                 alt="Firstgen Assets"
                 fill
-                sizes="160px"
+                sizes="150px"
                 style={{ objectFit: "contain", objectPosition: "left center" }}
               />
             </div>
@@ -360,8 +362,10 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "24px",
+              gap: "18px",
               padding: "20px 0",
+              flex: 1,
+              justifyContent: "center",
             }}
           >
             {navLinks.map((link) => (
@@ -371,13 +375,13 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
                 onClick={() => setMobileOpen(false)}
                 style={{
                   fontFamily: "var(--font-display)",
-                  fontSize: "1.85rem",
+                  fontSize: "clamp(1.4rem, 4vw, 1.85rem)",
                   color: "var(--ink-primary)",
                   textDecoration: "none",
                   fontWeight: 700,
                   letterSpacing: "-0.02em",
                   borderBottom: "1px solid var(--surface-hairline)",
-                  paddingBottom: "14px",
+                  paddingBottom: "12px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
@@ -390,11 +394,11 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
           </nav>
 
           {/* Bottom Actions */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px", flexShrink: 0, paddingTop: "12px" }}>
             <div
               style={{
                 fontFamily: "var(--font-technical)",
-                fontSize: "0.78rem",
+                fontSize: "0.74rem",
                 color: "var(--ink-muted)",
                 letterSpacing: "0.06em",
               }}
@@ -409,8 +413,8 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
               className="btn-copper"
               style={{
                 width: "100%",
-                padding: "16px 28px",
-                fontSize: "1rem",
+                padding: "15px 24px",
+                fontSize: "0.95rem",
                 borderRadius: "9999px",
               }}
             >
@@ -430,7 +434,16 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
           display: none;
         }
 
-        @media (max-width: 960px) {
+        @media (max-width: 1200px) {
+          :global(.nav-hotline) {
+            display: none !important;
+          }
+          .nav-brand-descriptor {
+            display: none !important;
+          }
+        }
+
+        @media (max-width: 1024px) {
           :global(.desktop-only) {
             display: none !important;
           }
@@ -441,17 +454,25 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
 
         @media (max-width: 640px) {
           .nav-logo-box {
-            width: 150px;
-            height: 42px;
-          }
-          .nav-brand-descriptor {
-            display: none !important;
+            width: 145px;
+            height: 40px;
           }
           .nav-btn-text-full {
             display: none;
           }
           .nav-btn-text-short {
             display: inline;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .nav-logo-box {
+            width: 120px;
+            height: 34px;
+          }
+          :global(.nav-cta-btn) {
+            padding: 8px 12px !important;
+            font-size: 0.78rem !important;
           }
         }
       `}</style>

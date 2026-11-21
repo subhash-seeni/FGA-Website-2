@@ -174,6 +174,7 @@ export default function LeaseEnquiryModal({
                 SELECT ASSET DIVISION:
               </div>
               <div
+                className="modal-categories-grid"
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(3, 1fr)",
@@ -500,6 +501,11 @@ export default function LeaseEnquiryModal({
       <style jsx>{`
         @media (max-width: 600px) {
           form > div {
+            grid-template-columns: 1fr !important;
+          }
+        }
+        @media (max-width: 440px) {
+          .modal-categories-grid {
             grid-template-columns: 1fr !important;
           }
         }

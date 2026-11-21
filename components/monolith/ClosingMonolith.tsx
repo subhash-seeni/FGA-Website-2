@@ -41,7 +41,7 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
             <h2
               className="font-display"
               style={{
-                fontSize: "clamp(2.8rem, 5.8vw, 4.8rem)",
+                fontSize: "clamp(2.2rem, 5.2vw, 4.8rem)",
                 color: "var(--ink-primary)",
                 letterSpacing: "-0.035em",
                 lineHeight: 1.05,
@@ -255,9 +255,9 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
             <h2
               className="font-display"
               style={{
-                fontSize: "clamp(2.8rem, 5.5vw, 4.6rem)",
+                fontSize: "clamp(2.2rem, 5.2vw, 4.4rem)",
                 color: "var(--ink-primary)",
-                lineHeight: 1.04,
+                lineHeight: 1.05,
                 letterSpacing: "-0.035em",
                 marginBottom: "18px",
               }}
@@ -268,7 +268,7 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
             {/* Subtext: 1 Punchy Line */}
             <p
               style={{
-                fontSize: "clamp(1.05rem, 1.35vw, 1.25rem)",
+                fontSize: "clamp(0.98rem, 1.3vw, 1.25rem)",
                 color: "var(--ink-secondary)",
                 lineHeight: 1.55,
                 maxWidth: "660px",
@@ -281,6 +281,7 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
 
             {/* Dual Action Group */}
             <div
+              className="monolith-btn-group"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -291,7 +292,7 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
             >
               <button
                 onClick={() => onOpenEnquiry("luxury-fleet")}
-                className="btn-copper"
+                className="btn-copper monolith-cta"
                 style={{
                   padding: "16px 38px",
                   fontSize: "0.95rem",
@@ -305,7 +306,7 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
 
               <a
                 href={`mailto:${footerData.email}`}
-                className="btn-pill-secondary"
+                className="btn-pill-secondary monolith-cta"
                 style={{
                   padding: "16px 32px",
                   fontSize: "0.95rem",
@@ -330,7 +331,17 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
             gap: 20px !important;
           }
         }
-        @media (max-width: 540px) {
+        @media (max-width: 600px) {
+          .monolith-btn-group {
+            flex-direction: column !important;
+            width: 100% !important;
+          }
+          :global(.monolith-cta) {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+        }
+        @media (max-width: 480px) {
           .trust-badges-grid {
             grid-template-columns: 1fr !important;
           }

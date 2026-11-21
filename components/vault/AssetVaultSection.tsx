@@ -117,7 +117,7 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
             <h2
               className="font-display"
               style={{
-                fontSize: "clamp(2.8rem, 5.8vw, 4.8rem)",
+                fontSize: "clamp(2.2rem, 5.2vw, 4.8rem)",
                 color: "var(--ink-primary)",
                 letterSpacing: "-0.035em",
                 lineHeight: 1.05,
@@ -380,8 +380,9 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
 
             {/* Bottom Action Footer */}
             <div
+              className="vault-footer-bar"
               style={{
-                padding: "20px clamp(24px, 3.5vw, 36px)",
+                padding: "20px clamp(16px, 3.5vw, 36px)",
                 borderTop: "1px solid var(--surface-hairline)",
                 backgroundColor: "var(--surface-stone)",
                 display: "flex",
@@ -416,12 +417,13 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
 
               <button
                 onClick={() => onOpenEnquiry(activeCategory.id)}
-                className="btn-pill-primary"
+                className="btn-pill-primary vault-cta-btn"
                 style={{
                   padding: "12px 24px",
                 }}
               >
-                <span>Structure {activeCategory.title} Lease</span>
+                <span className="vault-btn-text-full">Structure {activeCategory.title} Lease</span>
+                <span className="vault-btn-text-short">Structure Lease</span>
                 <ArrowUpRight size={15} />
               </button>
             </div>
@@ -602,12 +604,33 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
       </div>
 
       <style jsx>{`
+        .vault-btn-text-short {
+          display: none;
+        }
+
         @media (max-width: 960px) {
           .vault-editorial-spread {
             grid-template-columns: 1fr !important;
           }
           .inclusions-grid {
             grid-template-columns: 1fr !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .vault-footer-bar {
+            flex-direction: column !important;
+            align-items: stretch !important;
+          }
+          :global(.vault-cta-btn) {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+          .vault-btn-text-full {
+            display: none !important;
+          }
+          .vault-btn-text-short {
+            display: inline !important;
           }
         }
       `}</style>

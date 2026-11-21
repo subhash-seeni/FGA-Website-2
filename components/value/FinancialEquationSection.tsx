@@ -106,7 +106,7 @@ export default function FinancialEquationSection() {
           <h2
             className="font-display"
             style={{
-              fontSize: "clamp(2.8rem, 5.8vw, 4.8rem)",
+              fontSize: "clamp(2.2rem, 5.2vw, 4.8rem)",
               color: "var(--ink-primary)",
               letterSpacing: "-0.035em",
               lineHeight: 1.05,
@@ -457,10 +457,16 @@ export default function FinancialEquationSection() {
         @media (max-width: 960px) {
           .equation-grid-split {
             grid-template-columns: 1fr !important;
-            gap: 32px !important;
+            gap: 28px !important;
           }
           .comparison-row-inner {
             grid-template-columns: 1fr !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .equation-grid-split {
+            gap: 24px !important;
           }
         }
       `}</style>

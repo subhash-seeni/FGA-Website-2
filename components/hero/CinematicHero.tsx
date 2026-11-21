@@ -170,6 +170,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
           return (
             <div
               key={card.id}
+              className="hero-bg-photo-wrapper"
               style={{
                 position: "absolute",
                 inset: 0,
@@ -184,7 +185,8 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
                 fill
                 priority={idx === 0}
                 sizes="100vw"
-                style={{ objectFit: "cover", objectPosition: "75% center" }}
+                className="hero-bg-photo"
+                style={{ objectFit: "cover" }}
               />
             </div>
           );
@@ -192,13 +194,10 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
 
         {/* Master Light Architectural Scrim (Crisp Typography Left, Vivid Showcase Right) */}
         <div
+          className="hero-bg-scrim"
           style={{
             position: "absolute",
             inset: 0,
-            background: `
-              linear-gradient(90deg, #fbfbf9 0%, rgba(251, 251, 249, 0.97) 38%, rgba(251, 251, 249, 0.70) 58%, rgba(251, 251, 249, 0.18) 100%),
-              linear-gradient(180deg, #fbfbf9 0%, rgba(251, 251, 249, 0.4) 15%, transparent 35%, rgba(251, 251, 249, 0.6) 75%, #fbfbf9 100%)
-            `,
           }}
         />
 
@@ -235,13 +234,14 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
             justifyContent: "space-between",
             paddingBottom: "16px",
             borderBottom: "1px solid var(--surface-hairline)",
-            marginBottom: "clamp(28px, 4vw, 44px)",
+            marginBottom: "clamp(24px, 3.5vw, 44px)",
             flexWrap: "wrap",
-            gap: "12px",
+            gap: "10px",
           }}
         >
           <div className="mono-tag">{heroData.locationTag}</div>
           <div
+            className="hero-top-descriptor"
             style={{
               fontFamily: "var(--font-technical)",
               fontSize: "0.72rem",
@@ -283,12 +283,12 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
             </div>
 
             <h1
-              className="font-display"
+              className="font-display hero-headline"
               style={{
-                fontSize: "clamp(3.6rem, 7.5vw, 6.5rem)",
+                fontSize: "clamp(2.3rem, 6.5vw, 6rem)",
                 color: "var(--ink-primary)",
                 marginBottom: "20px",
-                lineHeight: 1.01,
+                lineHeight: 1.02,
                 letterSpacing: "-0.04em",
               }}
             >
@@ -308,7 +308,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
             <p
               className="hero-stagger-item"
               style={{
-                fontSize: "clamp(1.05rem, 1.4vw, 1.25rem)",
+                fontSize: "clamp(0.98rem, 1.35vw, 1.25rem)",
                 color: "var(--ink-secondary)",
                 lineHeight: 1.55,
                 maxWidth: "540px",
@@ -321,12 +321,12 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
 
             {/* Action Group */}
             <div
-              className="hero-stagger-item"
+              className="hero-stagger-item hero-btn-group"
               style={{ display: "flex", alignItems: "center", gap: "14px", flexWrap: "wrap" }}
             >
               <button
                 onClick={() => onOpenEnquiry(activeCard.categoryKey)}
-                className="btn-pill-primary"
+                className="btn-pill-primary hero-btn"
                 id="hero-apply-btn"
                 style={{
                   boxShadow: "0 8px 24px -4px rgba(18, 19, 22, 0.22)",
@@ -338,7 +338,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
 
               <Link
                 href="#asset-vault"
-                className="btn-pill-secondary"
+                className="btn-pill-secondary hero-btn"
                 id="hero-explore-btn"
               >
                 <span>The Asset Vault</span>
@@ -832,19 +832,50 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
       </div>
 
       <style jsx>{`
+        :global(.hero-bg-scrim) {
+          background: 
+            linear-gradient(90deg, #fbfbf9 0%, rgba(251, 251, 249, 0.97) 38%, rgba(251, 251, 249, 0.70) 58%, rgba(251, 251, 249, 0.18) 100%),
+            linear-gradient(180deg, #fbfbf9 0%, rgba(251, 251, 249, 0.4) 15%, transparent 35%, rgba(251, 251, 249, 0.6) 75%, #fbfbf9 100%);
+        }
+
+        :global(.hero-bg-photo) {
+          object-position: 75% center !important;
+        }
+
         @media (max-width: 960px) {
           .hero-split-grid {
             grid-template-columns: 1fr !important;
-            gap: 40px !important;
+            gap: 36px !important;
           }
           .hero-stats-grid {
             grid-template-columns: repeat(2, 1fr) !important;
           }
+          :global(.hero-bg-scrim) {
+            background: 
+              linear-gradient(180deg, #fbfbf9 0%, rgba(251, 251, 249, 0.94) 28%, rgba(251, 251, 249, 0.72) 58%, rgba(251, 251, 249, 0.96) 100%) !important;
+          }
+          :global(.hero-bg-photo) {
+            object-position: center 30% !important;
+          }
         }
 
-        @media (max-width: 580px) {
+        @media (max-width: 640px) {
+          .hero-top-descriptor {
+            display: none !important;
+          }
           .hero-stats-grid {
             grid-template-columns: 1fr !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-btn-group {
+            flex-direction: column !important;
+            width: 100% !important;
+          }
+          :global(.hero-btn) {
+            width: 100% !important;
+            justify-content: center !important;
           }
         }
       `}</style>

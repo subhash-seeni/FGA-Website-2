@@ -44,6 +44,7 @@ export default function TypographicFooter() {
           <div>
             {/* Prominent Official Logo (Larger & Filter-Free) */}
             <div
+              className="footer-logo-box"
               style={{
                 position: "relative",
                 width: "210px",
@@ -246,9 +247,16 @@ export default function TypographicFooter() {
             gap: 40px !important;
           }
         }
+        @media (max-width: 640px) {
+          .footer-logo-box {
+            width: 160px !important;
+            height: 46px !important;
+          }
+        }
         @media (max-width: 580px) {
           .footer-grid-responsive {
             grid-template-columns: 1fr !important;
+            gap: 32px !important;
           }
         }
       `}</style>

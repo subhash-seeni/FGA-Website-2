@@ -67,7 +67,7 @@ export default function VelocityLineSection({ onOpenEnquiry }: VelocityLineSecti
           <h2
             className="font-display"
             style={{
-              fontSize: "clamp(2.8rem, 5.8vw, 4.8rem)",
+              fontSize: "clamp(2.2rem, 5.2vw, 4.8rem)",
               color: "var(--ink-primary)",
               letterSpacing: "-0.035em",
               lineHeight: 1.05,
@@ -359,13 +359,20 @@ export default function VelocityLineSection({ onOpenEnquiry }: VelocityLineSecti
       <style jsx>{`
         @media (max-width: 960px) {
           .velocity-tabs-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 10px !important;
           }
           .velocity-inspector-split {
             grid-template-columns: 1fr !important;
+            gap: 28px !important;
           }
         }
-        @media (max-width: 600px) {
+        @media (max-width: 640px) {
+          .velocity-tabs-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 440px) {
           .velocity-tabs-grid {
             grid-template-columns: 1fr !important;
           }
