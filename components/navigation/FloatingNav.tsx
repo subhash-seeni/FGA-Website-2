@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight, List, X } from "@phosphor-icons/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { assetPath } from "@/lib/utils/basePath";
@@ -22,7 +22,7 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
     { label: "Asset Vault", href: "#asset-vault" },
     { label: "The Equation", href: "#financial-equation" },
     { label: "Velocity", href: "#velocity-line" },
-    { label: "Credentials", href: "#closing-monolith" },
+    { label: "Governance", href: "#closing-monolith" },
   ];
 
   // Lock body scroll and handle Escape key when mobile menu is open
@@ -93,7 +93,7 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
         Skip to main content
       </a>
 
-      {/* Architectural Light Masthead with Frosted Glass & Hairline */}
+      {/* Architectural Light Masthead */}
       <header
         ref={headerRef}
         style={{
@@ -102,11 +102,11 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
           left: 0,
           right: 0,
           zIndex: 100,
-          backgroundColor: scrolled ? "rgba(251, 251, 249, 0.94)" : "var(--surface-ground)",
+          backgroundColor: scrolled ? "rgba(251, 251, 249, 0.95)" : "var(--surface-ground)",
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
           borderBottom: "1px solid var(--surface-hairline)",
-          boxShadow: scrolled ? "0 4px 24px -2px rgba(18, 19, 22, 0.06)" : "none",
+          boxShadow: scrolled ? "0 4px 20px -2px rgba(18, 19, 22, 0.05)" : "none",
           transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
         }}
         id="architectural-masthead"
@@ -114,14 +114,14 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
         <div
           className="editorial-container"
           style={{
-            height: "82px",
+            height: "80px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            gap: "24px",
+            gap: "20px",
           }}
         >
-          {/* Brand Identity: Prominent Cropped Firstgen Logo (Much Bigger & Bolder) */}
+          {/* Brand Identity: Prominent Cropped Firstgen Logo */}
           <Link
             href="#hero"
             style={{
@@ -157,9 +157,9 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
             >
               <span
                 style={{
-                  fontFamily: "var(--font-technical)",
+                  fontFamily: "var(--font-mono)",
                   fontSize: "0.68rem",
-                  letterSpacing: "0.16em",
+                  letterSpacing: "0.14em",
                   color: "var(--color-copper)",
                   fontWeight: 700,
                   lineHeight: 1.1,
@@ -187,7 +187,7 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "8px",
+              gap: "4px",
             }}
             className="desktop-only"
             aria-label="Main Navigation"
@@ -200,18 +200,18 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
                   key={link.label}
                   href={link.href}
                   style={{
-                    fontSize: "0.88rem",
+                    fontSize: "0.86rem",
                     fontWeight: isActive ? 700 : 500,
                     color: isActive ? "var(--ink-primary)" : "var(--ink-secondary)",
                     textDecoration: "none",
-                    padding: "8px 16px",
-                    borderRadius: "9999px",
+                    padding: "7px 14px",
+                    borderRadius: "var(--radius-xs)",
                     backgroundColor: isActive ? "var(--surface-stone)" : "transparent",
                     transition: "all 0.2s ease",
                     letterSpacing: "-0.01em",
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: "8px",
+                    gap: "6px",
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) {
@@ -229,12 +229,14 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
                   {isActive && (
                     <span
                       style={{
-                        width: "6px",
-                        height: "6px",
-                        borderRadius: "50%",
-                        backgroundColor: "var(--color-copper)",
+                        color: "var(--color-copper)",
+                        fontWeight: 700,
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.75rem",
                       }}
-                    />
+                    >
+                      /
+                    </span>
                   )}
                   <span>{link.label}</span>
                 </Link>
@@ -244,7 +246,6 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
 
           {/* Desktop Action & Mobile Toggle */}
           <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: 0 }}>
-            {/* Direct Contact Hotline Info for C-suite */}
             <div
               className="desktop-only nav-hotline"
               style={{
@@ -256,7 +257,7 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
             >
               <span
                 style={{
-                  fontFamily: "var(--font-technical)",
+                  fontFamily: "var(--font-mono)",
                   fontSize: "0.68rem",
                   letterSpacing: "0.08em",
                   color: "var(--ink-muted)",
@@ -270,6 +271,7 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
                   fontSize: "0.78rem",
                   fontWeight: 600,
                   color: "var(--ink-primary)",
+                  fontFamily: "var(--font-mono)",
                 }}
               >
                 leasing@firstgenassets.in
@@ -280,10 +282,16 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
               onClick={onOpenEnquiry}
               className="btn-copper nav-cta-btn"
               id="nav-begin-lease-btn"
+              style={{
+                padding: "9px 18px",
+                borderRadius: "var(--radius-sm)",
+                fontFamily: "var(--font-display)",
+                fontSize: "0.85rem",
+              }}
             >
               <span className="nav-btn-text-full">Begin Lease</span>
               <span className="nav-btn-text-short">Lease</span>
-              <ArrowUpRight size={15} />
+              <ArrowUpRight size={15} weight="bold" />
             </button>
 
             {/* Mobile Menu Hamburger */}
@@ -294,15 +302,15 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
                 backgroundColor: "var(--surface-stone)",
                 border: "1px solid var(--surface-hairline)",
                 color: "var(--ink-primary)",
-                padding: "9px",
-                borderRadius: "9999px",
+                padding: "8px",
+                borderRadius: "var(--radius-xs)",
                 cursor: "pointer",
               }}
               className="mobile-toggle"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileOpen ? <X size={20} weight="bold" /> : <List size={20} weight="bold" />}
             </button>
           </div>
         </div>
@@ -347,13 +355,13 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
                 backgroundColor: "var(--surface-stone)",
                 border: "1px solid var(--surface-hairline)",
                 color: "var(--ink-primary)",
-                padding: "10px",
-                borderRadius: "50%",
+                padding: "8px",
+                borderRadius: "var(--radius-xs)",
                 cursor: "pointer",
               }}
               aria-label="Close menu"
             >
-              <X size={22} />
+              <X size={22} weight="bold" />
             </button>
           </div>
 
@@ -362,7 +370,7 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "18px",
+              gap: "16px",
               padding: "20px 0",
               flex: 1,
               justifyContent: "center",
@@ -388,7 +396,7 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
                 }}
               >
                 <span>{link.label}</span>
-                <ArrowUpRight size={20} color="var(--color-copper)" />
+                <ArrowUpRight size={20} color="var(--color-copper)" weight="bold" />
               </Link>
             ))}
           </nav>
@@ -397,8 +405,8 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
           <div style={{ display: "flex", flexDirection: "column", gap: "12px", flexShrink: 0, paddingTop: "12px" }}>
             <div
               style={{
-                fontFamily: "var(--font-technical)",
-                fontSize: "0.74rem",
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.72rem",
                 color: "var(--ink-muted)",
                 letterSpacing: "0.06em",
               }}
@@ -413,9 +421,10 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
               className="btn-copper"
               style={{
                 width: "100%",
-                padding: "15px 24px",
-                fontSize: "0.95rem",
-                borderRadius: "9999px",
+                padding: "14px 20px",
+                fontSize: "0.92rem",
+                borderRadius: "var(--radius-sm)",
+                fontFamily: "var(--font-display)",
               }}
             >
               Begin Lease Application
@@ -427,7 +436,7 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
       <style jsx>{`
         .nav-logo-box {
           width: 185px;
-          height: 52px;
+          height: 50px;
         }
 
         .nav-btn-text-short {
@@ -471,7 +480,7 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
             height: 34px;
           }
           :global(.nav-cta-btn) {
-            padding: 8px 12px !important;
+            padding: 7px 10px !important;
             font-size: 0.78rem !important;
           }
         }

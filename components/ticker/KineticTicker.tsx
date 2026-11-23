@@ -41,7 +41,7 @@ export default function KineticTicker() {
         borderTop: "1px solid var(--surface-hairline)",
         borderBottom: "1px solid var(--surface-hairline)",
         backgroundColor: "var(--surface-stone)",
-        padding: "16px 0",
+        padding: "14px 0",
         overflow: "hidden",
         position: "relative",
       }}
@@ -58,8 +58,8 @@ export default function KineticTicker() {
                 alignItems: "center",
                 gap: "14px",
                 padding: "0 28px",
-                fontSize: "0.82rem",
-                fontFamily: "var(--font-technical)",
+                fontSize: "0.78rem",
+                fontFamily: "var(--font-mono)",
                 color: "var(--ink-secondary)",
                 letterSpacing: "0.08em",
                 whiteSpace: "nowrap",
@@ -70,8 +70,8 @@ export default function KineticTicker() {
               {/* Refined Geometric Delimiter */}
               <span
                 style={{
-                  width: "5px",
-                  height: "5px",
+                  width: "4px",
+                  height: "4px",
                   backgroundColor: "var(--color-copper)",
                   transform: "rotate(45deg)",
                   display: "inline-block",

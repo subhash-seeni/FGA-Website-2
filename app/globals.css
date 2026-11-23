@@ -1,11 +1,17 @@
-/* Firstgen Assets Design System - Ultra-Modern Light Editorial & Institutional Luxury */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Urbanist:wght@600;700;800;900&display=swap');
+/* Firstgen Assets Design System - Ultra-Modern Light Architectural Luxury & Swiss Precision */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 :root {
-  /* Font Families */
-  --font-display: 'Urbanist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: 'Space Grotesk', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  /* Font Families (Plus Jakarta Sans: Sovereign Modern Authority, JetBrains Mono: Precision Ledger) */
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Architectural Precision Corner Radii (Zero Bubbly Pills) */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
 
   /* Surfaces (100% Light Luxury Architectural Palette) */
   --surface-ground: #fbfbf9;
@@ -165,6 +171,7 @@ body::before {
 .card-tactile {
   background: var(--surface-card);
   border: 1px solid var(--surface-hairline);
+  border-radius: var(--radius-md);
   box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.95),
     0 4px 20px -2px rgba(18, 19, 22, 0.04);
@@ -179,17 +186,18 @@ body::before {
   box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 1),
     0 18px 40px -8px rgba(18, 19, 22, 0.1);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 /* Frosted Luxury Parchment HUD */
 .parchment-hud {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border: 1px solid rgba(226, 221, 213, 0.88);
+  border-radius: var(--radius-md);
   box-shadow: 
-    0 24px 48px -12px rgba(18, 19, 22, 0.12),
+    0 24px 48px -12px rgba(18, 19, 22, 0.10),
     0 4px 12px -2px rgba(18, 19, 22, 0.04);
 }
 
@@ -309,34 +317,34 @@ body::before {
   background-color: var(--color-copper);
 }
 
-/* Luxury Architectural Action Buttons */
+/* Luxury Architectural Action Buttons (Sharp 4px Radii) */
 .btn-pill-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 13px 26px;
+  padding: 12px 24px;
   background-color: var(--ink-primary);
   color: #ffffff;
   font-family: var(--font-body);
   font-size: 0.88rem;
   font-weight: 600;
-  border-radius: 9999px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--ink-primary);
   text-decoration: none;
   cursor: pointer;
   transition: all 0.22s var(--ease-out-expo);
   white-space: nowrap;
   touch-action: manipulation;
-  box-shadow: 0 4px 14px -2px rgba(18, 19, 22, 0.18);
+  box-shadow: 0 4px 14px -2px rgba(18, 19, 22, 0.16);
 }
 
 .btn-pill-primary:hover {
   background-color: var(--color-copper);
   border-color: var(--color-copper);
   color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px -4px rgba(230, 106, 31, 0.35);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px -4px rgba(230, 106, 31, 0.32);
 }
 
 .btn-pill-secondary {
@@ -344,13 +352,13 @@ body::before {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 13px 24px;
+  padding: 12px 22px;
   background-color: var(--surface-card);
   color: var(--ink-primary);
   font-family: var(--font-body);
   font-size: 0.88rem;
   font-weight: 600;
-  border-radius: 9999px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--surface-hairline);
   text-decoration: none;
   cursor: pointer;
@@ -363,7 +371,7 @@ body::before {
 .btn-pill-secondary:hover {
   border-color: var(--ink-primary);
   background-color: var(--surface-stone);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: 0 6px 16px -2px rgba(18, 19, 22, 0.08);
 }
 
@@ -372,13 +380,13 @@ body::before {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 13px 26px;
+  padding: 12px 24px;
   background-color: var(--color-copper);
   color: #ffffff;
   font-family: var(--font-body);
   font-size: 0.88rem;
   font-weight: 700;
-  border-radius: 9999px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--color-copper);
   text-decoration: none;
   cursor: pointer;
@@ -390,8 +398,8 @@ body::before {
 .btn-copper:hover {
   background-color: var(--color-copper-hover);
   border-color: var(--color-copper-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px -4px rgba(230, 106, 31, 0.45);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px -4px rgba(230, 106, 31, 0.42);
 }
 
 @media (max-width: 640px) {

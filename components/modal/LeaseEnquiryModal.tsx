@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { X, CheckCircle2, ArrowRight, ShieldCheck, Car, HardHat, Cpu } from "lucide-react";
+import { X, CheckCircle, ArrowRight, ShieldCheck, Car, HardHat, Cpu } from "@phosphor-icons/react";
 
 interface LeaseEnquiryModalProps {
   isOpen: boolean;
@@ -76,9 +76,9 @@ export default function LeaseEnquiryModal({
         position: "fixed",
         inset: 0,
         zIndex: 250,
-        backgroundColor: "rgba(18, 19, 22, 0.5)",
-        backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)",
+        backgroundColor: "rgba(18, 19, 22, 0.6)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -91,9 +91,9 @@ export default function LeaseEnquiryModal({
         style={{
           backgroundColor: "var(--surface-card)",
           border: "1px solid var(--surface-hairline)",
-          borderRadius: "24px",
+          borderRadius: "var(--radius-md)",
           width: "100%",
-          maxWidth: "600px",
+          maxWidth: "580px",
           position: "relative",
           maxHeight: "90vh",
           overflowY: "auto",
@@ -108,15 +108,15 @@ export default function LeaseEnquiryModal({
           className="modal-close-btn"
           style={{
             position: "absolute",
-            top: "20px",
-            right: "20px",
+            top: "16px",
+            right: "16px",
             background: "var(--surface-stone)",
             border: "1px solid var(--surface-hairline)",
-            borderRadius: "50%",
+            borderRadius: "var(--radius-xs)",
             color: "var(--ink-primary)",
             cursor: "pointer",
-            width: "36px",
-            height: "36px",
+            width: "32px",
+            height: "32px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -125,13 +125,13 @@ export default function LeaseEnquiryModal({
           }}
           aria-label="Close modal dialog"
         >
-          <X size={17} />
+          <X size={16} weight="bold" />
         </button>
 
         {!submitted ? (
-          <div style={{ padding: "clamp(28px, 4.5vw, 40px)" }}>
+          <div style={{ padding: "clamp(24px, 4vw, 36px)" }}>
             {/* Header */}
-            <div style={{ marginBottom: "24px" }}>
+            <div style={{ marginBottom: "20px" }}>
               <div className="mono-tag" style={{ marginBottom: "8px" }}>
                 COMMERCIAL LEASING DESK · AHMEDABAD
               </div>
@@ -139,31 +139,31 @@ export default function LeaseEnquiryModal({
                 id="modal-title"
                 className="font-display"
                 style={{
-                  fontSize: "clamp(1.6rem, 2.5vw, 2.1rem)",
+                  fontSize: "clamp(1.6rem, 2.4vw, 2rem)",
                   color: "var(--ink-primary)",
-                  letterSpacing: "-0.02em",
-                  marginBottom: "8px",
+                  letterSpacing: "-0.025em",
+                  marginBottom: "6px",
                 }}
               >
-                Structure Your Operating Lease
+                Structure Operating Lease
               </h2>
               <p
                 style={{
-                  fontSize: "0.92rem",
+                  fontSize: "0.9rem",
                   color: "var(--ink-secondary)",
-                  lineHeight: 1.5,
+                  lineHeight: 1.45,
                 }}
               >
-                Submit your corporate asset requirement for our 48-hour underwriting and site handover workflow.
+                Direct digital submission for 48-hour underwriting and site handover protocol.
               </p>
             </div>
 
             {/* Category Selector Tabs */}
-            <div style={{ marginBottom: "20px" }}>
+            <div style={{ marginBottom: "18px" }}>
               <div
                 style={{
-                  fontSize: "0.74rem",
-                  fontFamily: "var(--font-technical)",
+                  fontSize: "0.72rem",
+                  fontFamily: "var(--font-mono)",
                   color: "var(--ink-muted)",
                   letterSpacing: "0.08em",
                   fontWeight: 700,
@@ -171,7 +171,7 @@ export default function LeaseEnquiryModal({
                   textTransform: "uppercase",
                 }}
               >
-                SELECT ASSET DIVISION:
+                SELECT DIVISION:
               </div>
               <div
                 className="modal-categories-grid"
@@ -190,8 +190,8 @@ export default function LeaseEnquiryModal({
                       type="button"
                       onClick={() => setSelectedCategory(c.id)}
                       style={{
-                        padding: "10px 8px",
-                        borderRadius: "10px",
+                        padding: "8px 10px",
+                        borderRadius: "var(--radius-xs)",
                         border: isSelected
                           ? "1px solid var(--ink-primary)"
                           : "1px solid var(--surface-hairline)",
@@ -202,13 +202,13 @@ export default function LeaseEnquiryModal({
                         alignItems: "center",
                         justifyContent: "center",
                         gap: "6px",
-                        fontFamily: "var(--font-technical)",
-                        fontSize: "0.76rem",
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.74rem",
                         fontWeight: 700,
                         transition: "all 0.2s ease",
                       }}
                     >
-                      <Icon size={14} color={isSelected ? "var(--color-copper)" : "inherit"} />
+                      <Icon size={14} color={isSelected ? "var(--color-copper)" : "inherit"} weight="bold" />
                       <span>{c.label}</span>
                     </button>
                   );
@@ -217,23 +217,23 @@ export default function LeaseEnquiryModal({
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
                 <div>
                   <label
                     htmlFor="company-name"
                     style={{
                       display: "block",
-                      fontSize: "0.74rem",
-                      fontFamily: "var(--font-technical)",
+                      fontSize: "0.72rem",
+                      fontFamily: "var(--font-mono)",
                       fontWeight: 700,
                       color: "var(--ink-muted)",
                       letterSpacing: "0.06em",
-                      marginBottom: "6px",
+                      marginBottom: "4px",
                       textTransform: "uppercase",
                     }}
                   >
-                    Enterprise / Entity Name *
+                    Entity / Corporate Name *
                   </label>
                   <input
                     id="company-name"
@@ -241,15 +241,15 @@ export default function LeaseEnquiryModal({
                     required
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
-                    placeholder="e.g. Adani Infra / Torrent Pharma"
+                    placeholder="e.g. Adani Infra Ltd"
                     style={{
                       width: "100%",
-                      padding: "11px 14px",
-                      borderRadius: "10px",
+                      padding: "10px 12px",
+                      borderRadius: "var(--radius-xs)",
                       border: "1px solid var(--surface-hairline)",
                       backgroundColor: "var(--surface-stone)",
                       color: "var(--ink-primary)",
-                      fontSize: "0.88rem",
+                      fontSize: "0.86rem",
                       fontFamily: "inherit",
                     }}
                   />
@@ -260,12 +260,12 @@ export default function LeaseEnquiryModal({
                     htmlFor="contact-name"
                     style={{
                       display: "block",
-                      fontSize: "0.74rem",
-                      fontFamily: "var(--font-technical)",
+                      fontSize: "0.72rem",
+                      fontFamily: "var(--font-mono)",
                       fontWeight: 700,
                       color: "var(--ink-muted)",
                       letterSpacing: "0.06em",
-                      marginBottom: "6px",
+                      marginBottom: "4px",
                       textTransform: "uppercase",
                     }}
                   >
@@ -277,33 +277,33 @@ export default function LeaseEnquiryModal({
                     required
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
-                    placeholder="e.g. Kartik Shah"
+                    placeholder="e.g. Rajesh Mehta"
                     style={{
                       width: "100%",
-                      padding: "11px 14px",
-                      borderRadius: "10px",
+                      padding: "10px 12px",
+                      borderRadius: "var(--radius-xs)",
                       border: "1px solid var(--surface-hairline)",
                       backgroundColor: "var(--surface-stone)",
                       color: "var(--ink-primary)",
-                      fontSize: "0.88rem",
+                      fontSize: "0.86rem",
                       fontFamily: "inherit",
                     }}
                   />
                 </div>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
                 <div>
                   <label
                     htmlFor="contact-email"
                     style={{
                       display: "block",
-                      fontSize: "0.74rem",
-                      fontFamily: "var(--font-technical)",
+                      fontSize: "0.72rem",
+                      fontFamily: "var(--font-mono)",
                       fontWeight: 700,
                       color: "var(--ink-muted)",
                       letterSpacing: "0.06em",
-                      marginBottom: "6px",
+                      marginBottom: "4px",
                       textTransform: "uppercase",
                     }}
                   >
@@ -315,15 +315,15 @@ export default function LeaseEnquiryModal({
                     required
                     value={contactEmail}
                     onChange={(e) => setContactEmail(e.target.value)}
-                    placeholder="kartik@company.in"
+                    placeholder="cfo@adaniinfra.in"
                     style={{
                       width: "100%",
-                      padding: "11px 14px",
-                      borderRadius: "10px",
+                      padding: "10px 12px",
+                      borderRadius: "var(--radius-xs)",
                       border: "1px solid var(--surface-hairline)",
                       backgroundColor: "var(--surface-stone)",
                       color: "var(--ink-primary)",
-                      fontSize: "0.88rem",
+                      fontSize: "0.86rem",
                       fontFamily: "inherit",
                     }}
                   />
@@ -334,12 +334,12 @@ export default function LeaseEnquiryModal({
                     htmlFor="contact-phone"
                     style={{
                       display: "block",
-                      fontSize: "0.74rem",
-                      fontFamily: "var(--font-technical)",
+                      fontSize: "0.72rem",
+                      fontFamily: "var(--font-mono)",
                       fontWeight: 700,
                       color: "var(--ink-muted)",
                       letterSpacing: "0.06em",
-                      marginBottom: "6px",
+                      marginBottom: "4px",
                       textTransform: "uppercase",
                     }}
                   >
@@ -354,12 +354,12 @@ export default function LeaseEnquiryModal({
                     placeholder="+91 98765 43210"
                     style={{
                       width: "100%",
-                      padding: "11px 14px",
-                      borderRadius: "10px",
+                      padding: "10px 12px",
+                      borderRadius: "var(--radius-xs)",
                       border: "1px solid var(--surface-hairline)",
                       backgroundColor: "var(--surface-stone)",
                       color: "var(--ink-primary)",
-                      fontSize: "0.88rem",
+                      fontSize: "0.86rem",
                       fontFamily: "inherit",
                     }}
                   />
@@ -371,32 +371,32 @@ export default function LeaseEnquiryModal({
                   htmlFor="asset-spec"
                   style={{
                     display: "block",
-                    fontSize: "0.74rem",
-                    fontFamily: "var(--font-technical)",
+                    fontSize: "0.72rem",
+                    fontFamily: "var(--font-mono)",
                     fontWeight: 700,
                     color: "var(--ink-muted)",
                     letterSpacing: "0.06em",
-                    marginBottom: "6px",
+                    marginBottom: "4px",
                     textTransform: "uppercase",
                   }}
                 >
-                  Specific Asset Model & Quantity *
+                  Asset Model & Volume *
                 </label>
                 <textarea
                   id="asset-spec"
                   required
-                  rows={3}
+                  rows={2}
                   value={assetRequirement}
                   onChange={(e) => setAssetRequirement(e.target.value)}
-                  placeholder="e.g. 2x Mercedes-Benz S-Class or 4x JCB 3CX Backhoe Loaders for 36-month lease..."
+                  placeholder="e.g. 2x Mercedes-Benz S-Class or 4x JCB 3CX Backhoe Loaders (36-month tenure)..."
                   style={{
                     width: "100%",
-                    padding: "11px 14px",
-                    borderRadius: "10px",
+                    padding: "10px 12px",
+                    borderRadius: "var(--radius-xs)",
                     border: "1px solid var(--surface-hairline)",
                     backgroundColor: "var(--surface-stone)",
                     color: "var(--ink-primary)",
-                    fontSize: "0.88rem",
+                    fontSize: "0.86rem",
                     fontFamily: "inherit",
                     resize: "vertical",
                   }}
@@ -408,14 +408,15 @@ export default function LeaseEnquiryModal({
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "8px",
-                  fontSize: "0.78rem",
+                  gap: "6px",
+                  fontSize: "0.76rem",
                   color: "var(--ink-muted)",
-                  padding: "8px 0",
+                  padding: "4px 0",
+                  fontFamily: "var(--font-mono)",
                 }}
               >
-                <ShieldCheck size={16} color="var(--color-copper)" style={{ flexShrink: 0 }} />
-                <span>Zero capital lock-in · 48-hour underwriting SLA · PAN-India mobilization</span>
+                <ShieldCheck size={16} color="var(--color-copper)" weight="bold" style={{ flexShrink: 0 }} />
+                <span>₹0 Down Payment · 48H Underwriting · Section 37(1) Deductible</span>
               </div>
 
               <button
@@ -423,13 +424,14 @@ export default function LeaseEnquiryModal({
                 className="btn-copper"
                 style={{
                   width: "100%",
-                  padding: "14px",
-                  fontSize: "0.95rem",
-                  borderRadius: "12px",
+                  padding: "12px",
+                  fontSize: "0.9rem",
+                  borderRadius: "var(--radius-sm)",
+                  fontFamily: "var(--font-display)",
                 }}
               >
                 <span>Submit Lease Application</span>
-                <ArrowRight size={16} />
+                <ArrowRight size={15} weight="bold" />
               </button>
             </form>
           </div>
@@ -437,26 +439,26 @@ export default function LeaseEnquiryModal({
           /* Submission Success State */
           <div
             style={{
-              padding: "clamp(36px, 6vw, 56px)",
+              padding: "clamp(36px, 6vw, 48px)",
               textAlign: "center",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              gap: "16px",
+              gap: "14px",
             }}
           >
             <div
               style={{
-                width: "56px",
-                height: "56px",
-                borderRadius: "50%",
+                width: "48px",
+                height: "48px",
+                borderRadius: "var(--radius-xs)",
                 backgroundColor: "var(--color-copper-light)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              <CheckCircle2 size={32} color="var(--color-copper)" />
+              <CheckCircle size={28} color="var(--color-copper)" weight="bold" />
             </div>
 
             <div className="mono-tag">APPLICATION RECEIVED · DAY 1</div>
@@ -464,32 +466,35 @@ export default function LeaseEnquiryModal({
             <h3
               className="font-display"
               style={{
-                fontSize: "1.8rem",
+                fontSize: "1.7rem",
                 color: "var(--ink-primary)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.025em",
               }}
             >
-              Lease Proposal Initiated
+              Proposal Initiated
             </h3>
 
             <p
               style={{
-                fontSize: "0.92rem",
+                fontSize: "0.9rem",
                 color: "var(--ink-secondary)",
-                lineHeight: 1.6,
-                maxWidth: "420px",
+                lineHeight: 1.55,
+                maxWidth: "400px",
               }}
             >
               Thank you, <strong>{contactName}</strong>. Our commercial credit desk has logged your requirement for{" "}
-              <strong>{companyName}</strong>. A transparent operating lease schedule will be dispatched within 4 working hours.
+              <strong>{companyName}</strong>. An operating lease schedule will be dispatched within 4 working hours.
             </p>
 
             <button
               onClick={handleReset}
               className="btn-pill-primary"
               style={{
-                marginTop: "12px",
-                padding: "12px 28px",
+                marginTop: "8px",
+                padding: "10px 24px",
+                borderRadius: "var(--radius-sm)",
+                fontFamily: "var(--font-display)",
+                fontSize: "0.85rem",
               }}
             >
               Return to Website

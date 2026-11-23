@@ -1,8 +1,10 @@
 "use client";
 
 import React from "react";
-import { ArrowUpRight, Mail, ShieldCheck, Landmark, CheckCircle, Scale } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight, EnvelopeSimple, ShieldCheck, Bank, CheckCircle, Scales } from "@phosphor-icons/react";
 import { conversionData, trustData, footerData } from "@/lib/data/homepageContent";
+import { assetPath } from "@/lib/utils/basePath";
 
 interface ClosingMonolithProps {
   onOpenEnquiry: (category?: string) => void;
@@ -25,7 +27,7 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
         <div
           className="ghost-numeral"
           style={{
-            top: "30px",
+            top: "20px",
             right: "clamp(20px, 5vw, 80px)",
           }}
         >
@@ -34,31 +36,33 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
 
         <div className="editorial-container" style={{ position: "relative", zIndex: 1 }}>
           {/* Header */}
-          <div style={{ maxWidth: "800px", marginBottom: "clamp(40px, 5vw, 64px)" }}>
-            <div className="mono-tag" style={{ marginBottom: "12px" }}>
-              04 / INSTITUTIONAL TRUST & GOVERNANCE
+          <div style={{ maxWidth: "800px", marginBottom: "clamp(36px, 4vw, 56px)" }}>
+            <div className="mono-tag" style={{ marginBottom: "10px" }}>
+              04 · INSTITUTIONAL GOVERNANCE
             </div>
             <h2
               className="font-display"
               style={{
-                fontSize: "clamp(2.2rem, 5.2vw, 4.8rem)",
+                fontSize: "clamp(2.2rem, 4.8vw, 4.4rem)",
                 color: "var(--ink-primary)",
                 letterSpacing: "-0.035em",
                 lineHeight: 1.05,
                 marginBottom: "12px",
               }}
             >
-              {trustData.title}
+              Institutional Integrity.
+              <br />
+              Statutory Compliance.
             </h2>
             <p
               style={{
                 fontSize: "1.05rem",
                 color: "var(--ink-secondary)",
-                lineHeight: 1.55,
+                lineHeight: 1.5,
                 fontWeight: 500,
               }}
             >
-              Operating within India&apos;s recognized banking, credit reporting, and statutory regulatory ecosystems.
+              Operating strictly within India&apos;s recognized banking networks, statutory accounting rules, and legal frameworks.
             </p>
           </div>
 
@@ -67,8 +71,8 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "14px",
-              marginBottom: "44px",
+              gap: "12px",
+              marginBottom: "36px",
             }}
             className="trust-badges-grid"
           >
@@ -77,18 +81,19 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                 key={idx}
                 className="card-tactile card-tactile-hover"
                 style={{
-                  borderRadius: "14px",
-                  padding: "18px 20px",
+                  borderRadius: "var(--radius-xs)",
+                  padding: "16px 18px",
                   display: "flex",
                   alignItems: "center",
                   gap: "12px",
+                  border: "1px solid var(--surface-hairline)",
                 }}
               >
                 <div
                   style={{
-                    width: "36px",
-                    height: "36px",
-                    borderRadius: "8px",
+                    width: "32px",
+                    height: "32px",
+                    borderRadius: "var(--radius-xs)",
                     backgroundColor: "var(--color-copper-light)",
                     display: "flex",
                     alignItems: "center",
@@ -96,12 +101,12 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                     flexShrink: 0,
                   }}
                 >
-                  <ShieldCheck size={18} color="var(--color-copper)" />
+                  <ShieldCheck size={18} color="var(--color-copper)" weight="bold" />
                 </div>
                 <span
                   style={{
-                    fontFamily: "var(--font-technical)",
-                    fontSize: "0.82rem",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.78rem",
                     fontWeight: 700,
                     letterSpacing: "0.04em",
                     color: "var(--ink-primary)",
@@ -113,13 +118,13 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
             ))}
           </div>
 
-          {/* 3 Stately Governance Pillars (Condensed 1-Liners) */}
+          {/* 3 Stately Governance Pillars */}
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "28px",
-              paddingTop: "32px",
+              gap: "24px",
+              paddingTop: "28px",
               borderTop: "1px solid var(--surface-hairline)",
             }}
             className="governance-pillars-grid"
@@ -130,8 +135,8 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                   display: "flex",
                   alignItems: "center",
                   gap: "8px",
-                  fontFamily: "var(--font-technical)",
-                  fontSize: "0.76rem",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.74rem",
                   fontWeight: 700,
                   color: "var(--color-copper)",
                   letterSpacing: "0.08em",
@@ -139,11 +144,11 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                   marginBottom: "8px",
                 }}
               >
-                <Landmark size={15} />
-                <span>BANKING SYNDICATE</span>
+                <Bank size={16} weight="bold" />
+                <span>BANKING SYNDICATES</span>
               </div>
-              <p style={{ fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: 1.55 }}>
-                Direct integration with top Indian private banking lenders ensures competitive leasing rates and swift underwriting.
+              <p style={{ fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: 1.5, fontFamily: "var(--font-sans)" }}>
+                Direct underwriting and asset funding through empaneled Tier-1 Indian private banking institutions.
               </p>
             </div>
 
@@ -153,8 +158,8 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                   display: "flex",
                   alignItems: "center",
                   gap: "8px",
-                  fontFamily: "var(--font-technical)",
-                  fontSize: "0.76rem",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.74rem",
                   fontWeight: 700,
                   color: "var(--color-copper)",
                   letterSpacing: "0.08em",
@@ -162,11 +167,11 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                   marginBottom: "8px",
                 }}
               >
-                <CheckCircle size={15} />
+                <CheckCircle size={16} weight="bold" />
                 <span>NPCI & DIGILOCKER</span>
               </div>
-              <p style={{ fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: 1.55 }}>
-                Legally binding Aadhaar eSign execution and automated eNACH mandate processing compliant with RBI standards.
+              <p style={{ fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: 1.5, fontFamily: "var(--font-sans)" }}>
+                Legally binding Aadhaar OTP eSign execution and automated NPCI eNACH rental processing.
               </p>
             </div>
 
@@ -176,8 +181,8 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                   display: "flex",
                   alignItems: "center",
                   gap: "8px",
-                  fontFamily: "var(--font-technical)",
-                  fontSize: "0.76rem",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.74rem",
                   fontWeight: 700,
                   color: "var(--color-copper)",
                   letterSpacing: "0.08em",
@@ -185,11 +190,11 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                   marginBottom: "8px",
                 }}
               >
-                <Scale size={15} />
-                <span>SARFAESI COMPLIANT</span>
+                <Scales size={16} weight="bold" />
+                <span>IND AS & TAX CODE</span>
               </div>
-              <p style={{ fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: 1.55 }}>
-                Structured under Indian commercial law and IND AS standards for 100% compliant off-balance-sheet OpEx treatment.
+              <p style={{ fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: 1.5, fontFamily: "var(--font-sans)" }}>
+                Fully compliant with IND AS 116 / IFRS 16 lease accounting and Section 37(1) tax deductions.
               </p>
             </div>
           </div>
@@ -199,7 +204,7 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
       {/* Kinetic Datum Line */}
       <div className="kinetic-datum-line" />
 
-      {/* 2. Closing Conversion Stage */}
+      {/* 2. Closing Conversion Stage with Featured Architecture Image */}
       <section
         className="ambient-wash-champagne"
         style={{
@@ -212,110 +217,146 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
           <div
             className="card-tactile"
             style={{
-              borderRadius: "28px",
-              padding: "clamp(52px, 7vw, 84px) clamp(24px, 5vw, 68px)",
-              textAlign: "center",
-              position: "relative",
-              maxWidth: "1060px",
+              borderRadius: "var(--radius-md)",
+              overflow: "hidden",
+              border: "1px solid var(--surface-hairline)",
+              maxWidth: "1120px",
               margin: "0 auto",
-              boxShadow: "0 28px 60px -15px rgba(18, 19, 22, 0.08), inset 0 1px 0 #ffffff",
+              boxShadow: "0 24px 60px -15px rgba(18, 19, 22, 0.08)",
             }}
           >
-            {/* Top Coordinate Pill */}
+            {/* Monumental Architecture Visual Banner (Section 5 Visual) */}
             <div
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                padding: "6px 16px",
-                borderRadius: "9999px",
-                backgroundColor: "var(--surface-stone)",
-                border: "1px solid var(--surface-hairline)",
-                fontFamily: "var(--font-technical)",
-                fontSize: "0.72rem",
-                color: "var(--color-copper)",
-                fontWeight: 700,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                marginBottom: "24px",
+                position: "relative",
+                width: "100%",
+                height: "clamp(220px, 25vw, 320px)",
+                overflow: "hidden",
+                borderBottom: "1px solid var(--surface-hairline)",
               }}
             >
-              <span
-                style={{
-                  width: "6px",
-                  height: "6px",
-                  borderRadius: "50%",
-                  backgroundColor: "var(--color-copper)",
-                }}
+              <Image
+                src={assetPath("/images/closing-monolith.jpg")}
+                alt="Firstgen Corporate Monumental Headquarters & Advisory"
+                fill
+                priority
+                sizes="(max-width: 1200px) 100vw, 1120px"
+                style={{ objectFit: "cover" }}
               />
-              <span>{conversionData.locationStamp}</span>
+
+              {/* Architectural Stamp */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "16px",
+                  left: "16px",
+                  padding: "4px 12px",
+                  borderRadius: "var(--radius-xs)",
+                  backgroundColor: "rgba(255, 255, 255, 0.94)",
+                  backdropFilter: "blur(8px)",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.7rem",
+                  fontWeight: 700,
+                  color: "var(--ink-primary)",
+                  letterSpacing: "0.08em",
+                }}
+              >
+                FIRSTGEN CAPITAL ASSETS · CAPITAL ADVISORY DESK
+              </div>
+
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "16px",
+                  right: "16px",
+                  backgroundColor: "rgba(18, 19, 22, 0.88)",
+                  backdropFilter: "blur(8px)",
+                  color: "#ffffff",
+                  padding: "4px 12px",
+                  borderRadius: "var(--radius-xs)",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.72rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.04em",
+                }}
+              >
+                {conversionData.locationStamp}
+              </div>
             </div>
 
-            {/* Headline */}
-            <h2
-              className="font-display"
-              style={{
-                fontSize: "clamp(2.2rem, 5.2vw, 4.4rem)",
-                color: "var(--ink-primary)",
-                lineHeight: 1.05,
-                letterSpacing: "-0.035em",
-                marginBottom: "18px",
-              }}
-            >
-              {conversionData.headline}
-            </h2>
-
-            {/* Subtext: 1 Punchy Line */}
-            <p
-              style={{
-                fontSize: "clamp(0.98rem, 1.3vw, 1.25rem)",
-                color: "var(--ink-secondary)",
-                lineHeight: 1.55,
-                maxWidth: "660px",
-                margin: "0 auto 36px auto",
-                fontWeight: 500,
-              }}
-            >
-              Convert capital expenditure into predictable operational liquidity. Access premier fleets, heavy machinery, and enterprise IT with 48-hour delivery.
-            </p>
-
-            {/* Dual Action Group */}
+            {/* Conversion Details */}
             <div
-              className="monolith-btn-group"
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "16px",
-                flexWrap: "wrap",
+                padding: "clamp(36px, 5vw, 64px) clamp(24px, 4vw, 56px)",
+                textAlign: "center",
               }}
             >
-              <button
-                onClick={() => onOpenEnquiry("luxury-fleet")}
-                className="btn-copper monolith-cta"
+              <h2
+                className="font-display"
                 style={{
-                  padding: "16px 38px",
-                  fontSize: "0.95rem",
-                  borderRadius: "9999px",
+                  fontSize: "clamp(2.2rem, 4.8vw, 4.2rem)",
+                  color: "var(--ink-primary)",
+                  lineHeight: 1.05,
+                  letterSpacing: "-0.035em",
+                  marginBottom: "16px",
                 }}
-                id="monolith-primary-cta"
               >
-                <span>{conversionData.ctaPrimary}</span>
-                <ArrowUpRight size={17} />
-              </button>
+                {conversionData.headline}
+              </h2>
 
-              <a
-                href={`mailto:${footerData.email}`}
-                className="btn-pill-secondary monolith-cta"
+              <p
                 style={{
-                  padding: "16px 32px",
-                  fontSize: "0.95rem",
-                  borderRadius: "9999px",
+                  fontSize: "clamp(1rem, 1.3vw, 1.2rem)",
+                  color: "var(--ink-secondary)",
+                  lineHeight: 1.55,
+                  maxWidth: "680px",
+                  margin: "0 auto 32px auto",
+                  fontWeight: 500,
                 }}
               >
-                <Mail size={16} />
-                <span>{footerData.email}</span>
-              </a>
+                Eliminate capital expenditure drag. Structure your next corporate fleet, heavy machinery, or enterprise IT deployment with ₹0 down payment and 48-hour delivery.
+              </p>
+
+              {/* Action Buttons */}
+              <div
+                className="monolith-btn-group"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "14px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <button
+                  onClick={() => onOpenEnquiry("luxury-fleet")}
+                  className="btn-copper monolith-cta"
+                  style={{
+                    padding: "14px 32px",
+                    fontSize: "0.92rem",
+                    borderRadius: "var(--radius-sm)",
+                    fontFamily: "var(--font-display)",
+                  }}
+                  id="monolith-primary-cta"
+                >
+                  <span>{conversionData.ctaPrimary}</span>
+                  <ArrowUpRight size={17} weight="bold" />
+                </button>
+
+                <a
+                  href={`mailto:${footerData.email}`}
+                  className="btn-pill-secondary monolith-cta"
+                  style={{
+                    padding: "14px 28px",
+                    fontSize: "0.92rem",
+                    borderRadius: "var(--radius-sm)",
+                    fontFamily: "var(--font-mono)",
+                  }}
+                >
+                  <EnvelopeSimple size={16} weight="bold" />
+                  <span>{footerData.email}</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

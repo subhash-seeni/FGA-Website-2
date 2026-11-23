@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, CaretDown } from "@phosphor-icons/react";
 import { heroData, heroCardsData } from "@/lib/data/homepageContent";
 import { gsap } from "@/lib/animations/gsap";
 
@@ -272,20 +272,20 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
               className="mono-tag hero-stagger-item"
               style={{
                 marginBottom: "16px",
-                backgroundColor: "rgba(255, 255, 255, 0.8)",
-                padding: "6px 14px",
-                borderRadius: "9999px",
+                backgroundColor: "rgba(255, 255, 255, 0.9)",
+                padding: "4px 10px",
+                borderRadius: "var(--radius-xs)",
                 border: "1px solid var(--surface-hairline)",
                 width: "fit-content",
               }}
             >
-              PRESTIGE COMMERCIAL ASSET MOBILITY
+              COMMERCIAL ASSET MOBILITY · GUJARAT
             </div>
 
             <h1
               className="font-display hero-headline"
               style={{
-                fontSize: "clamp(2.3rem, 6.5vw, 6rem)",
+                fontSize: "clamp(2.4rem, 6.5vw, 6.2rem)",
                 color: "var(--ink-primary)",
                 marginBottom: "20px",
                 lineHeight: 1.02,
@@ -328,12 +328,9 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
                 onClick={() => onOpenEnquiry(activeCard.categoryKey)}
                 className="btn-pill-primary hero-btn"
                 id="hero-apply-btn"
-                style={{
-                  boxShadow: "0 8px 24px -4px rgba(18, 19, 22, 0.22)",
-                }}
               >
                 <span>Structure Your Lease</span>
-                <ArrowRight size={16} />
+                <ArrowRight size={16} weight="bold" />
               </button>
 
               <Link
@@ -342,16 +339,16 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
                 id="hero-explore-btn"
               >
                 <span>The Asset Vault</span>
-                <ChevronDown size={15} />
+                <CaretDown size={15} weight="bold" />
               </Link>
             </div>
           </div>
 
-          {/* Right Column: Architectural Frosted HUD Pill & Division Controller */}
+          {/* Right Column: Architectural Frosted HUD & Division Controller */}
           <div
             className="hero-stagger-item parchment-hud"
             style={{
-              borderRadius: "22px",
+              borderRadius: "var(--radius-md)",
               padding: "22px 24px",
               display: "flex",
               flexDirection: "column",
@@ -379,7 +376,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
                     onClick={() => setActiveCategoryIndex(idx)}
                     style={{
                       padding: "10px 8px",
-                      borderRadius: "10px",
+                      borderRadius: "var(--radius-sm)",
                       border: isSelected ? "1px solid var(--ink-primary)" : "1px solid var(--surface-hairline)",
                       backgroundColor: isSelected ? "var(--ink-primary)" : "rgba(255, 255, 255, 0.7)",
                       color: isSelected ? "#ffffff" : "var(--ink-secondary)",
@@ -403,7 +400,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
             <div
               style={{
                 backgroundColor: "rgba(255, 255, 255, 0.95)",
-                borderRadius: "14px",
+                borderRadius: "var(--radius-sm)",
                 padding: "16px",
                 border: "1px solid var(--surface-hairline)",
                 display: "flex",
@@ -427,7 +424,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
                   style={{
                     fontSize: "0.7rem",
                     padding: "3px 8px",
-                    borderRadius: "9999px",
+                    borderRadius: "var(--radius-xs)",
                     backgroundColor: "var(--surface-stone)",
                     color: "var(--ink-secondary)",
                     fontFamily: "var(--font-technical)",
@@ -478,7 +475,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
                     style={{
                       backgroundColor: "var(--surface-stone)",
                       padding: "8px 12px",
-                      borderRadius: "8px",
+                      borderRadius: "var(--radius-xs)",
                       display: "flex",
                       flexDirection: "column",
                     }}
@@ -518,7 +515,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
                 alignItems: "center",
                 justifyContent: "space-between",
                 padding: "10px 16px",
-                borderRadius: "10px",
+                borderRadius: "var(--radius-sm)",
                 backgroundColor: "var(--surface-stone)",
                 border: "1px solid var(--surface-hairline)",
                 color: "var(--ink-primary)",
@@ -538,7 +535,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
               }}
             >
               <span>Request Custom Proposal for this Division</span>
-              <ArrowRight size={14} color="var(--color-copper)" />
+              <ArrowRight size={14} color="var(--color-copper)" weight="bold" />
             </button>
           </div>
         </div>
@@ -572,7 +569,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
             <div
               className="metric-ribbon-card card-tactile card-tactile-hover"
               style={{
-                borderRadius: "14px",
+                borderRadius: "var(--radius-md)",
                 padding: "20px 22px",
                 display: "flex",
                 flexDirection: "column",
@@ -637,7 +634,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
             <div
               className="metric-ribbon-card card-tactile card-tactile-hover"
               style={{
-                borderRadius: "14px",
+                borderRadius: "var(--radius-md)",
                 padding: "20px 22px",
                 display: "flex",
                 flexDirection: "column",
@@ -702,7 +699,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
             <div
               className="metric-ribbon-card card-tactile card-tactile-hover"
               style={{
-                borderRadius: "14px",
+                borderRadius: "var(--radius-md)",
                 padding: "20px 22px",
                 display: "flex",
                 flexDirection: "column",
@@ -745,12 +742,12 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
                   fontFamily: "var(--font-display)",
                   fontSize: "1.75rem",
                   fontWeight: 800,
-                  color: "var(--color-copper)",
+                  color: "var(--ink-primary)",
                   letterSpacing: "-0.02em",
                   lineHeight: 1.1,
                 }}
               >
-                <span ref={stat2Ref}>₹0</span> Required
+                <span ref={stat2Ref} style={{ color: "var(--color-copper)" }}>₹0</span> Required
               </div>
               <div
                 style={{
@@ -767,7 +764,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
             <div
               className="metric-ribbon-card card-tactile card-tactile-hover"
               style={{
-                borderRadius: "14px",
+                borderRadius: "var(--radius-md)",
                 padding: "20px 22px",
                 display: "flex",
                 flexDirection: "column",

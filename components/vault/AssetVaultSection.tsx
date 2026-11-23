@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Check, Sparkles } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Check } from "@phosphor-icons/react";
 import { categoryCardsData } from "@/lib/data/homepageContent";
 import { assetPath } from "@/lib/utils/basePath";
 import { gsap } from "@/lib/animations/gsap";
@@ -11,11 +11,10 @@ interface AssetVaultSectionProps {
   onOpenEnquiry: (categoryId: string) => void;
 }
 
-// Condensed 1-line high-impact descriptions (User Request: scale down text)
 const condensedDescriptions: Record<string, string> = {
-  "luxury-fleet": "Premier corporate mobility with full insurance coverage & white-glove concierge.",
-  "construction-warehouse": "Heavy earthmoving & warehouse equipment across India's key industrial corridors.",
-  "it-hardware": "Enterprise servers, workstations & compute infrastructure with 3-year OEM ProSupport.",
+  "luxury-fleet": "Executive saloons, armoured escorts, and VIP transport deployed with zero capital lock-in.",
+  "construction-warehouse": "Heavy excavators, reach stackers, and industrial fleets mobilized across India's logistics corridors.",
+  "it-hardware": "Enterprise AI servers, cloud compute racks, and workstations with 3-year OEM ProSupport.",
 };
 
 export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionProps) {
@@ -36,12 +35,12 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".vault-spread-anim",
-        { opacity: 0, y: 35 },
+        { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.85,
-          stagger: 0.15,
+          duration: 0.8,
+          stagger: 0.12,
           ease: "power3.out",
           clearProps: "transform,opacity",
           scrollTrigger: {
@@ -55,14 +54,13 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
     return () => ctx.revert();
   }, []);
 
-  // GSAP crossfade on active division switch
   const handleSelectDivision = (id: string) => {
     if (id === activeId) return;
     if (featuredCardRef.current) {
       gsap.fromTo(
         featuredCardRef.current,
-        { opacity: 0.7, scale: 0.98 },
-        { opacity: 1, scale: 1, duration: 0.45, ease: "power2.out" }
+        { opacity: 0.75, scale: 0.99 },
+        { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }
       );
     }
     setActiveId(id);
@@ -89,7 +87,7 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
       <div
         className="ghost-numeral"
         style={{
-          top: "30px",
+          top: "20px",
           right: "clamp(20px, 5vw, 80px)",
         }}
       >
@@ -105,41 +103,43 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
             justifyContent: "space-between",
             flexWrap: "wrap",
             gap: "24px",
-            marginBottom: "clamp(40px, 5vw, 64px)",
-            paddingBottom: "24px",
+            marginBottom: "clamp(36px, 4vw, 56px)",
+            paddingBottom: "20px",
             borderBottom: "1px solid var(--surface-hairline)",
           }}
         >
           <div>
-            <div className="mono-tag" style={{ marginBottom: "12px" }}>
-              01 / THREE SPECIALIZED DIVISIONS
+            <div className="mono-tag" style={{ marginBottom: "10px" }}>
+              01 · ASSET VAULT
             </div>
             <h2
               className="font-display"
               style={{
-                fontSize: "clamp(2.2rem, 5.2vw, 4.8rem)",
+                fontSize: "clamp(2.2rem, 4.8vw, 4.4rem)",
                 color: "var(--ink-primary)",
                 letterSpacing: "-0.035em",
                 lineHeight: 1.05,
               }}
             >
-              The Asset Vault
+              Institutional Assets.
+              <br />
+              Zero Balance Sheet Drag.
             </h2>
           </div>
 
-          <div style={{ maxWidth: "480px" }}>
+          <div style={{ maxWidth: "440px" }}>
             <p
               style={{
-                fontSize: "1.05rem",
+                fontSize: "1.02rem",
                 color: "var(--ink-secondary)",
                 lineHeight: 1.5,
                 fontWeight: 500,
                 marginBottom: "14px",
               }}
             >
-              Operating leases across three capital verticals with zero capital lock-in and guaranteed rapid delivery.
+              Direct off-balance-sheet deployment across 3 dedicated divisions. Turn depreciating capex into pure operational agility.
             </p>
-            {/* Division Switcher Buttons */}
+            {/* Division Selector Buttons */}
             <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
               {categoryCardsData.map((cat) => {
                 const isSelected = cat.id === activeId;
@@ -148,15 +148,16 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                     key={cat.id}
                     onClick={() => handleSelectDivision(cat.id)}
                     style={{
-                      padding: "6px 14px",
-                      borderRadius: "9999px",
+                      padding: "6px 12px",
+                      borderRadius: "var(--radius-xs)",
                       border: isSelected ? "1px solid var(--ink-primary)" : "1px solid var(--surface-hairline)",
                       backgroundColor: isSelected ? "var(--ink-primary)" : "var(--surface-card)",
                       color: isSelected ? "#ffffff" : "var(--ink-secondary)",
-                      fontFamily: "var(--font-technical)",
-                      fontSize: "0.74rem",
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.72rem",
                       fontWeight: 700,
                       cursor: "pointer",
+                      letterSpacing: "0.04em",
                       transition: "all 0.2s ease",
                     }}
                   >
@@ -173,7 +174,7 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
           style={{
             display: "grid",
             gridTemplateColumns: "1.25fr 0.9fr",
-            gap: "clamp(24px, 3.5vw, 40px)",
+            gap: "clamp(20px, 3vw, 36px)",
             alignItems: "stretch",
           }}
           className="vault-editorial-spread"
@@ -183,7 +184,7 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
             ref={featuredCardRef}
             className="vault-spread-anim card-tactile"
             style={{
-              borderRadius: "24px",
+              borderRadius: "var(--radius-md)",
               overflow: "hidden",
               display: "flex",
               flexDirection: "column",
@@ -195,7 +196,7 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
               {/* Division Accent Top Line */}
               <div
                 style={{
-                  height: "5px",
+                  height: "4px",
                   width: "100%",
                   backgroundColor: getDivisionAccent(activeCategory.id),
                 }}
@@ -223,12 +224,12 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                   }}
                 />
 
-                {/* Floating Meta Pills */}
+                {/* Architectural Corner Tags */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "16px",
-                    left: "16px",
+                    top: "14px",
+                    left: "14px",
                     display: "flex",
                     alignItems: "center",
                     gap: "8px",
@@ -236,36 +237,36 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                 >
                   <span
                     style={{
-                      padding: "6px 14px",
-                      borderRadius: "9999px",
-                      backgroundColor: "rgba(255, 255, 255, 0.94)",
-                      backdropFilter: "blur(10px)",
-                      border: "1px solid rgba(0, 0, 0, 0.08)",
-                      fontFamily: "var(--font-technical)",
-                      fontSize: "0.72rem",
+                      padding: "4px 10px",
+                      borderRadius: "var(--radius-xs)",
+                      backgroundColor: "rgba(255, 255, 255, 0.95)",
+                      backdropFilter: "blur(8px)",
+                      border: "1px solid rgba(0, 0, 0, 0.1)",
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.7rem",
                       color: "var(--ink-primary)",
-                      fontWeight: 800,
+                      fontWeight: 700,
                       letterSpacing: "0.08em",
-                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
                     }}
                   >
-                    FEATURED DIVISION · {activeCategory.num}
+                    DIV-{activeCategory.num} · ACTIVE SPEC
                   </span>
                 </div>
 
                 <div
                   style={{
                     position: "absolute",
-                    bottom: "16px",
-                    right: "16px",
-                    backgroundColor: "rgba(18, 19, 22, 0.85)",
+                    bottom: "14px",
+                    right: "14px",
+                    backgroundColor: "rgba(18, 19, 22, 0.9)",
+                    backdropFilter: "blur(8px)",
                     color: "#ffffff",
-                    padding: "6px 14px",
-                    borderRadius: "9999px",
-                    fontFamily: "var(--font-technical)",
-                    fontSize: "0.74rem",
+                    padding: "4px 10px",
+                    borderRadius: "var(--radius-xs)",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.72rem",
                     fontWeight: 700,
-                    letterSpacing: "0.06em",
+                    letterSpacing: "0.04em",
                   }}
                 >
                   {activeCategory.startingRate}
@@ -276,13 +277,13 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
               <div style={{ padding: "clamp(24px, 3.5vw, 36px)" }}>
                 <div
                   style={{
-                    fontFamily: "var(--font-technical)",
-                    fontSize: "0.72rem",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.7rem",
                     color: getDivisionAccent(activeCategory.id),
                     letterSpacing: "0.12em",
                     fontWeight: 700,
                     textTransform: "uppercase",
-                    marginBottom: "6px",
+                    marginBottom: "8px",
                   }}
                 >
                   {activeCategory.badge}
@@ -291,9 +292,9 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                 <h3
                   className="font-display"
                   style={{
-                    fontSize: "clamp(1.9rem, 2.6vw, 2.5rem)",
+                    fontSize: "clamp(1.9rem, 2.5vw, 2.4rem)",
                     color: "var(--ink-primary)",
-                    marginBottom: "8px",
+                    marginBottom: "10px",
                     letterSpacing: "-0.03em",
                   }}
                 >
@@ -302,78 +303,78 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
 
                 <p
                   style={{
-                    fontSize: "0.98rem",
+                    fontSize: "1rem",
                     color: "var(--ink-secondary)",
                     lineHeight: 1.55,
                     marginBottom: "24px",
                     fontWeight: 500,
-                    maxWidth: "600px",
+                    maxWidth: "580px",
                   }}
                 >
                   {condensedDescriptions[activeCategory.id] || activeCategory.description}
                 </p>
 
-                {/* Representative Fleet Chips */}
-                <div style={{ marginBottom: "24px" }}>
-                  <div
-                    style={{
-                      fontSize: "0.7rem",
-                      fontFamily: "var(--font-technical)",
-                      color: "var(--ink-muted)",
-                      letterSpacing: "0.1em",
-                      fontWeight: 700,
-                      marginBottom: "8px",
-                    }}
-                  >
-                    DEPLOYED ASSETS:
-                  </div>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-                    {activeCategory.assets.map((asset) => (
-                      <span
-                        key={asset}
-                        style={{
-                          padding: "6px 12px",
-                          backgroundColor: "var(--surface-stone)",
-                          border: "1px solid var(--surface-hairline)",
-                          borderRadius: "8px",
-                          fontSize: "0.78rem",
-                          color: "var(--ink-primary)",
-                          fontFamily: "var(--font-technical)",
-                          fontWeight: 600,
-                        }}
-                      >
-                        {asset}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Inclusions Checklist */}
+                {/* Minimal Architectural Ledger Specs */}
                 <div
                   style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(2, 1fr)",
-                    gap: "10px",
-                    paddingTop: "16px",
-                    borderTop: "1px solid var(--surface-hairline)",
+                    gap: "12px",
+                    padding: "16px",
+                    backgroundColor: "var(--surface-stone)",
+                    borderRadius: "var(--radius-sm)",
+                    border: "1px solid var(--surface-hairline)",
                   }}
-                  className="inclusions-grid"
                 >
-                  {activeCategory.inclusions.map((inc, i) => (
-                    <div
-                      key={i}
+                  <div>
+                    <span
                       style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                        fontSize: "0.84rem",
-                        color: "var(--ink-secondary)",
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.68rem",
+                        color: "var(--ink-muted)",
+                        display: "block",
+                        letterSpacing: "0.06em",
+                        marginBottom: "2px",
                       }}
                     >
-                      <Check size={14} color="var(--color-copper)" style={{ flexShrink: 0 }} />
-                      <span>{inc}</span>
-                    </div>
-                  ))}
+                      TYPICAL TENURE
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontSize: "1.05rem",
+                        fontWeight: 700,
+                        color: "var(--ink-primary)",
+                      }}
+                    >
+                      {activeCategory.typicalTenure}
+                    </span>
+                  </div>
+
+                  <div>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.68rem",
+                        color: "var(--ink-muted)",
+                        display: "block",
+                        letterSpacing: "0.06em",
+                        marginBottom: "2px",
+                      }}
+                    >
+                      CAPITAL ALLOCATION
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontSize: "1.05rem",
+                        fontWeight: 700,
+                        color: "var(--color-copper)",
+                      }}
+                    >
+                      100% Tax Deductible
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -382,7 +383,7 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
             <div
               className="vault-footer-bar"
               style={{
-                padding: "20px clamp(16px, 3.5vw, 36px)",
+                padding: "16px clamp(16px, 3.5vw, 36px)",
                 borderTop: "1px solid var(--surface-hairline)",
                 backgroundColor: "var(--surface-stone)",
                 display: "flex",
@@ -392,26 +393,17 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                 gap: "14px",
               }}
             >
-              <div>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <Check size={16} color="var(--color-copper)" weight="bold" />
                 <span
                   style={{
-                    fontFamily: "var(--font-technical)",
-                    fontSize: "0.72rem",
-                    color: "var(--ink-muted)",
-                    display: "block",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.75rem",
+                    color: "var(--ink-secondary)",
+                    fontWeight: 600,
                   }}
                 >
-                  TYPICAL TENURE
-                </span>
-                <span
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "1.2rem",
-                    fontWeight: 700,
-                    color: "var(--ink-primary)",
-                  }}
-                >
-                  {activeCategory.typicalTenure}
+                  Zero Maintenance & Insurance Liability
                 </span>
               </div>
 
@@ -419,12 +411,15 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                 onClick={() => onOpenEnquiry(activeCategory.id)}
                 className="btn-pill-primary vault-cta-btn"
                 style={{
-                  padding: "12px 24px",
+                  padding: "10px 20px",
+                  borderRadius: "var(--radius-sm)",
+                  fontFamily: "var(--font-display)",
+                  fontSize: "0.86rem",
                 }}
               >
                 <span className="vault-btn-text-full">Structure {activeCategory.title} Lease</span>
                 <span className="vault-btn-text-short">Structure Lease</span>
-                <ArrowUpRight size={15} />
+                <ArrowUpRight size={15} weight="bold" />
               </button>
             </div>
           </div>
@@ -434,7 +429,7 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "24px",
+              gap: "20px",
             }}
           >
             {otherCategories.map((cat) => (
@@ -442,7 +437,7 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                 key={cat.id}
                 className="vault-spread-anim card-tactile card-tactile-hover"
                 style={{
-                  borderRadius: "20px",
+                  borderRadius: "var(--radius-md)",
                   overflow: "hidden",
                   display: "flex",
                   flexDirection: "column",
@@ -455,7 +450,7 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                 {/* Division Accent Line */}
                 <div
                   style={{
-                    height: "4px",
+                    height: "3px",
                     width: "100%",
                     backgroundColor: getDivisionAccent(cat.id),
                   }}
@@ -465,7 +460,7 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                   style={{
                     position: "relative",
                     width: "100%",
-                    height: "170px",
+                    height: "160px",
                     overflow: "hidden",
                   }}
                 >
@@ -479,29 +474,29 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                   <div
                     style={{
                       position: "absolute",
-                      top: "12px",
-                      left: "12px",
-                      padding: "4px 10px",
-                      borderRadius: "9999px",
-                      backgroundColor: "rgba(255, 255, 255, 0.92)",
-                      fontFamily: "var(--font-technical)",
-                      fontSize: "0.68rem",
+                      top: "10px",
+                      left: "10px",
+                      padding: "3px 8px",
+                      borderRadius: "var(--radius-xs)",
+                      backgroundColor: "rgba(255, 255, 255, 0.94)",
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.66rem",
                       fontWeight: 700,
                       color: "var(--ink-primary)",
                     }}
                   >
-                    {cat.num}
+                    DIV-{cat.num}
                   </div>
                   <div
                     style={{
                       position: "absolute",
-                      bottom: "12px",
-                      right: "12px",
-                      padding: "4px 10px",
-                      borderRadius: "9999px",
-                      backgroundColor: "rgba(18, 19, 22, 0.8)",
-                      fontFamily: "var(--font-technical)",
-                      fontSize: "0.7rem",
+                      bottom: "10px",
+                      right: "10px",
+                      padding: "3px 8px",
+                      borderRadius: "var(--radius-xs)",
+                      backgroundColor: "rgba(18, 19, 22, 0.85)",
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.68rem",
                       fontWeight: 600,
                       color: "#ffffff",
                     }}
@@ -512,7 +507,7 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
 
                 <div
                   style={{
-                    padding: "20px",
+                    padding: "18px",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
@@ -522,12 +517,13 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                   <div>
                     <div
                       style={{
-                        fontFamily: "var(--font-technical)",
-                        fontSize: "0.68rem",
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.66rem",
                         color: getDivisionAccent(cat.id),
                         fontWeight: 700,
                         letterSpacing: "0.1em",
                         marginBottom: "4px",
+                        textTransform: "uppercase",
                       }}
                     >
                       {cat.badge}
@@ -536,7 +532,7 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                     <h4
                       className="font-display"
                       style={{
-                        fontSize: "1.45rem",
+                        fontSize: "1.35rem",
                         color: "var(--ink-primary)",
                         letterSpacing: "-0.02em",
                         marginBottom: "6px",
@@ -568,17 +564,15 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                   >
                     <span
                       style={{
-                        fontSize: "0.78rem",
-                        color: "var(--color-copper)",
-                        fontWeight: 700,
-                        fontFamily: "var(--font-technical)",
+                        fontSize: "0.74rem",
+                        color: "var(--ink-muted)",
+                        fontFamily: "var(--font-mono)",
                         display: "flex",
                         alignItems: "center",
                         gap: "4px",
                       }}
                     >
-                      <Sparkles size={13} />
-                      Click to Feature
+                      Tenure: {cat.typicalTenure}
                     </span>
 
                     <button
@@ -588,12 +582,13 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                       }}
                       className="btn-pill-secondary"
                       style={{
-                        padding: "8px 14px",
-                        fontSize: "0.78rem",
+                        padding: "6px 12px",
+                        borderRadius: "var(--radius-xs)",
+                        fontSize: "0.76rem",
                       }}
                     >
-                      <span>Lease Options</span>
-                      <ArrowUpRight size={13} />
+                      <span>Select</span>
+                      <ArrowRight size={13} weight="bold" />
                     </button>
                   </div>
                 </div>
@@ -610,9 +605,6 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
 
         @media (max-width: 960px) {
           .vault-editorial-spread {
-            grid-template-columns: 1fr !important;
-          }
-          .inclusions-grid {
             grid-template-columns: 1fr !important;
           }
         }
