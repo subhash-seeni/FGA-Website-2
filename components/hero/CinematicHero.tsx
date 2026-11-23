@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CaretDown } from "@phosphor-icons/react";
-import { heroData, heroCardsData } from "@/lib/data/homepageContent";
+import { heroCardsData } from "@/lib/data/homepageContent";
 import { gsap } from "@/lib/animations/gsap";
 
 interface CinematicHeroProps {
@@ -68,6 +68,9 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
           stagger: 0.14,
           ease: "power3.out",
           clearProps: "transform,opacity",
+          onComplete: () => {
+            gsap.set(".mask-reveal-wrap", { overflow: "visible" });
+          },
         }
       );
 
@@ -218,7 +221,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
         style={{
           position: "relative",
           zIndex: 1,
-          paddingTop: "clamp(32px, 5vw, 60px)",
+          paddingTop: "clamp(44px, 5.5vw, 68px)",
           paddingBottom: "clamp(48px, 6vw, 76px)",
           minHeight: "clamp(680px, 85vh, 880px)",
           display: "flex",
@@ -226,35 +229,6 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
           justifyContent: "space-between",
         }}
       >
-        {/* Top Minimal Coordinates & Institutional Tag */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            paddingBottom: "16px",
-            borderBottom: "1px solid var(--surface-hairline)",
-            marginBottom: "clamp(24px, 3.5vw, 44px)",
-            flexWrap: "wrap",
-            gap: "10px",
-          }}
-        >
-          <div className="mono-tag">{heroData.locationTag}</div>
-          <div
-            className="hero-top-descriptor"
-            style={{
-              fontFamily: "var(--font-technical)",
-              fontSize: "0.72rem",
-              letterSpacing: "0.14em",
-              color: "var(--ink-muted)",
-              textTransform: "uppercase",
-              fontWeight: 600,
-            }}
-          >
-            COMMERCIAL OPERATING LEASE PLATFORM · CORPORATE ASSET MOBILITY
-          </div>
-        </div>
-
         {/* Central Display & Architectural Hero Content */}
         <div
           style={{
@@ -271,15 +245,10 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
             <div
               className="mono-tag hero-stagger-item"
               style={{
-                marginBottom: "16px",
-                backgroundColor: "rgba(255, 255, 255, 0.9)",
-                padding: "4px 10px",
-                borderRadius: "var(--radius-xs)",
-                border: "1px solid var(--surface-hairline)",
-                width: "fit-content",
+                marginBottom: "14px",
               }}
             >
-              COMMERCIAL ASSET MOBILITY · GUJARAT
+              OPERATING LEASE PLATFORM · AHMEDABAD
             </div>
 
             <h1
@@ -288,18 +257,19 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
                 fontSize: "clamp(2.4rem, 6.5vw, 6.2rem)",
                 color: "var(--ink-primary)",
                 marginBottom: "20px",
-                lineHeight: 1.02,
+                lineHeight: 1.08,
                 letterSpacing: "-0.04em",
+                paddingBottom: "4px",
               }}
             >
-              <div className="mask-reveal-wrap">
+              <div className="mask-reveal-wrap" style={{ paddingBottom: "0.18em", marginBottom: "-0.18em" }}>
                 <span className="hero-reveal-line">Assets</span>{" "}
                 <span className="hero-reveal-line" style={{ color: "var(--color-copper)" }}>
                   Work.
                 </span>
               </div>
               <br />
-              <div className="mask-reveal-wrap">
+              <div className="mask-reveal-wrap" style={{ paddingBottom: "0.18em", marginBottom: "-0.18em" }}>
                 <span className="hero-reveal-line">Capital</span>{" "}
                 <span className="hero-reveal-line">Stays.</span>
               </div>
@@ -408,18 +378,7 @@ export default function CinematicHero({ onOpenEnquiry }: CinematicHeroProps) {
                 gap: "12px",
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <span
-                  style={{
-                    fontFamily: "var(--font-technical)",
-                    fontSize: "0.68rem",
-                    color: "var(--color-copper)",
-                    fontWeight: 700,
-                    letterSpacing: "0.1em",
-                  }}
-                >
-                  {activeCard.badge}
-                </span>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
                 <span
                   style={{
                     fontSize: "0.7rem",

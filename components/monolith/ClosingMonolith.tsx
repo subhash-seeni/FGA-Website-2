@@ -243,45 +243,6 @@ export default function ClosingMonolith({ onOpenEnquiry }: ClosingMonolithProps)
                 sizes="(max-width: 1200px) 100vw, 1120px"
                 style={{ objectFit: "cover" }}
               />
-
-              {/* Architectural Stamp */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: "16px",
-                  left: "16px",
-                  padding: "4px 12px",
-                  borderRadius: "var(--radius-xs)",
-                  backgroundColor: "rgba(255, 255, 255, 0.94)",
-                  backdropFilter: "blur(8px)",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.7rem",
-                  fontWeight: 700,
-                  color: "var(--ink-primary)",
-                  letterSpacing: "0.08em",
-                }}
-              >
-                FIRSTGEN CAPITAL ASSETS · CAPITAL ADVISORY DESK
-              </div>
-
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "16px",
-                  right: "16px",
-                  backgroundColor: "rgba(18, 19, 22, 0.88)",
-                  backdropFilter: "blur(8px)",
-                  color: "#ffffff",
-                  padding: "4px 12px",
-                  borderRadius: "var(--radius-xs)",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.72rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.04em",
-                }}
-              >
-                {conversionData.locationStamp}
-              </div>
             </div>
 
             {/* Conversion Details */}

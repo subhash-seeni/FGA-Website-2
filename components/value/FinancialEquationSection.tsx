@@ -331,23 +331,6 @@ export default function FinancialEquationSection() {
                 sizes="(max-width: 900px) 100vw, 45vw"
                 style={{ objectFit: "cover" }}
               />
-              <div
-                style={{
-                  position: "absolute",
-                  top: "12px",
-                  left: "12px",
-                  padding: "4px 10px",
-                  borderRadius: "var(--radius-xs)",
-                  backgroundColor: "rgba(255, 255, 255, 0.94)",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.68rem",
-                  fontWeight: 700,
-                  color: "var(--ink-primary)",
-                  letterSpacing: "0.06em",
-                }}
-              >
-                BOARDROOM ADVISORY · ₹250CR+ ASSETS DEPLOYED
-              </div>
             </div>
 
             {/* Credo & Metrics */}

@@ -276,6 +276,8 @@ body::before {
   overflow: hidden;
   display: inline-block;
   vertical-align: top;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
 }
 
 .mask-reveal-line {
@@ -300,21 +302,11 @@ body::before {
   font-family: var(--font-technical);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-copper);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.mono-tag::before {
-  content: "";
   display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 2px;
-  background-color: var(--color-copper);
+  line-height: 1.2;
 }
 
 /* Luxury Architectural Action Buttons (Sharp 4px Radii) */

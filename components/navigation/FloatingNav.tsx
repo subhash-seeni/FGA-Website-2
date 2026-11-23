@@ -127,7 +127,6 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "16px",
               textDecoration: "none",
               flexShrink: 0,
             }}
@@ -142,43 +141,6 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
                 style={{ objectFit: "contain", objectPosition: "left center" }}
                 priority
               />
-            </div>
-
-            {/* Subtle Corporate Micro-Badge */}
-            <div
-              className="nav-brand-descriptor"
-              style={{
-                borderLeft: "1px solid var(--surface-hairline)",
-                paddingLeft: "14px",
-                display: "flex",
-                flexDirection: "column",
-                gap: "2px",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.68rem",
-                  letterSpacing: "0.14em",
-                  color: "var(--color-copper)",
-                  fontWeight: 700,
-                  lineHeight: 1.1,
-                }}
-              >
-                OPERATING LEASE
-              </span>
-              <span
-                style={{
-                  fontSize: "0.64rem",
-                  letterSpacing: "0.06em",
-                  color: "var(--ink-muted)",
-                  textTransform: "uppercase",
-                  fontWeight: 500,
-                  lineHeight: 1.1,
-                }}
-              >
-                Ahmedabad · India
-              </span>
             </div>
           </Link>
 
@@ -250,32 +212,29 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
               className="desktop-only nav-hotline"
               style={{
                 display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-end",
+                alignItems: "center",
                 marginRight: "6px",
               }}
             >
-              <span
+              <a
+                href="mailto:leasing@firstgenassets.in"
                 style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.68rem",
-                  letterSpacing: "0.08em",
-                  color: "var(--ink-muted)",
+                  fontSize: "0.82rem",
                   fontWeight: 600,
+                  color: "var(--ink-secondary)",
+                  fontFamily: "var(--font-mono)",
+                  textDecoration: "none",
+                  transition: "color 0.2s ease",
                 }}
-              >
-                48-HR MOBILIZATION
-              </span>
-              <span
-                style={{
-                  fontSize: "0.78rem",
-                  fontWeight: 600,
-                  color: "var(--ink-primary)",
-                  fontFamily: "var(--font-mono)",
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "var(--color-copper)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = "var(--ink-secondary)";
                 }}
               >
                 leasing@firstgenassets.in
-              </span>
+              </a>
             </div>
 
             <button
@@ -445,9 +404,6 @@ export default function FloatingNav({ onOpenEnquiry }: FloatingNavProps) {
 
         @media (max-width: 1200px) {
           :global(.nav-hotline) {
-            display: none !important;
-          }
-          .nav-brand-descriptor {
             display: none !important;
           }
         }

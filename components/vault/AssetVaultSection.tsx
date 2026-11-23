@@ -224,35 +224,6 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                   }}
                 />
 
-                {/* Architectural Corner Tags */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "14px",
-                    left: "14px",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                  }}
-                >
-                  <span
-                    style={{
-                      padding: "4px 10px",
-                      borderRadius: "var(--radius-xs)",
-                      backgroundColor: "rgba(255, 255, 255, 0.95)",
-                      backdropFilter: "blur(8px)",
-                      border: "1px solid rgba(0, 0, 0, 0.1)",
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.7rem",
-                      color: "var(--ink-primary)",
-                      fontWeight: 700,
-                      letterSpacing: "0.08em",
-                    }}
-                  >
-                    DIV-{activeCategory.num} · ACTIVE SPEC
-                  </span>
-                </div>
-
                 <div
                   style={{
                     position: "absolute",
@@ -275,20 +246,6 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
 
               {/* Card Body */}
               <div style={{ padding: "clamp(24px, 3.5vw, 36px)" }}>
-                <div
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "0.7rem",
-                    color: getDivisionAccent(activeCategory.id),
-                    letterSpacing: "0.12em",
-                    fontWeight: 700,
-                    textTransform: "uppercase",
-                    marginBottom: "8px",
-                  }}
-                >
-                  {activeCategory.badge}
-                </div>
-
                 <h3
                   className="font-display"
                   style={{
@@ -474,22 +431,6 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                   <div
                     style={{
                       position: "absolute",
-                      top: "10px",
-                      left: "10px",
-                      padding: "3px 8px",
-                      borderRadius: "var(--radius-xs)",
-                      backgroundColor: "rgba(255, 255, 255, 0.94)",
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.66rem",
-                      fontWeight: 700,
-                      color: "var(--ink-primary)",
-                    }}
-                  >
-                    DIV-{cat.num}
-                  </div>
-                  <div
-                    style={{
-                      position: "absolute",
                       bottom: "10px",
                       right: "10px",
                       padding: "3px 8px",
@@ -515,20 +456,6 @@ export default function AssetVaultSection({ onOpenEnquiry }: AssetVaultSectionPr
                   }}
                 >
                   <div>
-                    <div
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "0.66rem",
-                        color: getDivisionAccent(cat.id),
-                        fontWeight: 700,
-                        letterSpacing: "0.1em",
-                        marginBottom: "4px",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      {cat.badge}
-                    </div>
-
                     <h4
                       className="font-display"
                       style={{
